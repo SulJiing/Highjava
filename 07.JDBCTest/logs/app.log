@@ -1,0 +1,8 @@
+2023-10-17 11:29:08.023 [main] INFO  log4jexam.sql.Query - SQL =>  INSERT INTO mymember ( mem_id, mem_name, mem_tel, mem_addr )  VALUES ( ?, ?, ?, ? ) 
+2023-10-17 11:39:03.955 [main] INFO  log4jexam.sql.Query - SQL =>  INSERT INTO mymember ( mem_id, mem_name, mem_tel, mem_addr )  VALUES ( ?, ?, ?, ? ) 
+2023-10-17 11:39:42.278 [main] INFO  log4jexam.sql.Query - SQL =>  INSERT INTO mymember ( mem_id, mem_name, mem_tel, mem_addr )  VALUES ( ?, ?, ?, ? ) 
+2023-10-17 11:39:42.280 [main] DEBUG log4jexam.sql.Parameter - PARAMETER => (memId : ㅁㅇㄴ, memName : ㅁㅇㄴ, memTel : ㅁㅇㄴ, memAddr : ㅁㅇㄴ)
+2023-10-17 11:39:57.311 [main] INFO  log4jexam.sql.Query - SQL =>  INSERT INTO mymember ( mem_id, mem_name, mem_tel, mem_addr )  VALUES ( ?, ?, ?, ? ) 
+2023-10-17 11:39:57.315 [main] DEBUG log4jexam.sql.Parameter - PARAMETER => (memId : ㄴㅁㅇ, memName : 아ㅏ, memTel : 123, memAddr : 아)
+2023-10-17 11:40:28.156 [main] INFO  log4jexam.sql.Query - SQL =>  INSERT INTO mymember ( mem_id, mem_name, mem_tel, mem_addr )  VALUES ( ?, ?, ?, ? ) 
+2023-10-17 21:01:52.905 [main] INFO  log4jexam.sql.Query - SQL =>  INSERT INTO mymember ( mem_id, mem_name, mem_tel, mem_addr )  VALUES ( ?, ?, ?, ? ) 
