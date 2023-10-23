@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+ul { 						
+  list-style: none;				  
+  text-align: center;			  
+  border-top: 4px inset red;		
+  border-bottom: 4px inset red;		
+  padding: 10px 0;				  
+}						
+ul li a {
+    text-decoration: none;
+    color: black;
+}
+ul li a:hover {
+    text-decoration: underline; /*밑줄*/
+}
+ul li { 				
+    display: inline;
+    text-transform: uppercase; /*대문자 변환*/
+    padding : 0 10px;
+    letter-spacing: 10px; /*자간*/
+}
+li {
+    border-style : solid;
+}
+td{
+    width: 100px;
+    height: 100px;
+}
+table {
+    width: 800px;
+    /* border-collapse: collapse; */
+    border-spacing: 10px; /* border-collapse가 separate일때 사용*/
+    empty-cells: hide;
+    text-align: center;
+    text-align-last: justify;
+    table-layout: fixed; /*디폴트가 오토 - 컨텐츠 양에 따라 자동 분할 */
+}
+</style>
+<body>
+    <!-- table>tr*2>td*2 -->
+    <table border="">
+        <tr>
+            <td>앞으로의 길을 내다볼 때 필요한 건 걱정이 아닌 판단이다.</td>
+            <td>들은 것은 잊어버린다 본 것은 기억된다 해본 것은 내것이 된다</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td></td>
+        </tr>
+    </table>
+    <ol style="list-style-image: url(../imeage/아하기싫어.jfif);">
+        <li style="list-style-position: inside;">inside</li>
+        <li>outside</li>
+    </ol>
+    <ul>
+        <li><a href="">HOME</a></li>
+        <li><a href="">project</a></li>
+        <li><a href="">NOTICE</a></li>
+        <li><a href="">QNA</a></li>
+    </ul>
+</body>
+</html>

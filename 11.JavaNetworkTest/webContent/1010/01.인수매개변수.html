@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function f_fnc(p_arg, param2) { // 매개변수가 많으면 undefined처리됨
+            alert(p_arg[1]+param2);
+        }
+        // f_fnc("바질"/*, "페스토"*/); // 인자가 많으면 무시되고 
+        // f_fnc(["바질", '페스토', "파스타"]); // 여러 정보를 배열 형태로 보내기
+        
+        function f_fnc1(p_arg) {
+            alert(p_arg);
+            console.log(p_arg.key2); // 점 연산자로 접근 - value2
+            console.log(p_arg["key3"]); // 배열식 접근법 - value3
+            // console.log(p_arg[key3]); // 변수로 인식하므로 결과값을 얻을 수 없음
+            console.log(p_arg[8282]); // 숫자형식의 키는 배열식 접근법으로 접근
+        }
+        // f_fnc1({'key1' : 'value1',8282 : '다비치', 'key3' : 'value3'});
+
+        function f_fnc2(p_arg) {
+            alert("1번째 경고창"+p_arg); // 함수 자체적인 정보 표시(Function Pointer)
+            alert("2번째 경고창"+p_arg()); // 넘겨받은 함수 자체를 실행시키고 반환값을 받음
+        }
+        f_fnc2( function(){alert("함수전달"); return "생략시 undefined를 반환"} );
+
+    </script>
+</body>
+</html>

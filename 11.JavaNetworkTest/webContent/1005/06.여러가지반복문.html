@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table {
+            border:3px solid black;
+        }
+        td {
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="while" onclick="f_while()">
+    <input type="button" value="do-while" onclick="f_dowhile()">
+    <input type="button" value="for" onclick="f_for()">
+    <input type="button" value="nested-for" onclick="f_nestedfor()">
+    <input type="button" value="for-in" onclick="f_forin()">
+    <input type="button" value="for-Of" onclick="f_forOf()">
+
+    <script>
+    let i = 0; // 전역변수
+function f_while() {
+    while(i<5) {
+        console.log("while_"+i)
+        i++;
+    }
+}
+function f_dowhile() {
+    do {
+        console.log("do-while_"+i)
+        i++;
+    } while(i<5)
+}
+function f_for() {
+    for(let i =0; i<10; i++){
+        console.log("for_"+i);
+    }
+}
+function f_nestedfor() {
+    let v_tbl = "";
+    v_tbl += ("<h1>구구단표</h1>");
+    v_tbl += ("<table border=1>");
+    for (var i = 1; i <= 9; i++) {  
+        v_tbl += ("<tr>");
+        v_tbl += ("<td>" + i + "</td>");
+        for (var j = 2; j <= 9; j++) { 
+            v_tbl += ("<td>" + i * j + "</td>");
+        }
+        v_tbl += "</tr>";
+    }
+    v_tbl += "</table>";
+    // document.querySelector('body').innerHTML += v_tbl;
+    // innerHTML - <script> 사용에 대한 보안이슈가 있으므로 사용 지양
+    // insertAdjacentHTML(position,value) 
+    document.querySelector('body').insertAdjacentHTML("beforeend",v_tbl);
+}
+// for(변수 in 오브젝트(배열)) - 열거가능한 객체의 key정보를 변수에 담아서 활용
+let testObj = {a:'apple', b:'banana', "c":'carrot'};
+let testArr = [1,'apple',true,null,undefined];
+
+function f_forin() {
+    for(let k in testArr) {
+        console.log(" 객체대상일때는key반환, 배열 대상일때는index반환");
+        console.log(testObj.a); // apple
+        console.log(testObj[k]); // value정보
+    }
+}
+// for(변수 of 배열) - 컬렉션 전용 반복문, 컬렉션 객체가 iterator속성을 갖고 있어야 함
+// 객체 또는 비열거 대상으로 사용시 에러를 발생시킴
+function f_forOf() {
+    let teststr = "우와우";
+    // 변수로 대상의 value 정보를 받음
+    for(let a of teststr) {
+        console.log(a);
+    }
+    console.log(a);
+}
+    </script>
+</body>
+</html>

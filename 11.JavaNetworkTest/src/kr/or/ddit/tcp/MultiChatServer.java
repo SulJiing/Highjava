@@ -83,11 +83,11 @@ public class MultiChatServer {
 			DataOutputStream dos = new DataOutputStream(clients.get(name).getOutputStream());
 
 			if (msg.startsWith("/w_")) {
-				int targetNameEndIndex = msg.indexOf("_", 3); // 대상 이름의 끝 인덱스
-				if (targetNameEndIndex > 3) {
-					String targetName = msg.substring(3, targetNameEndIndex);
+				int nameEndId = msg.indexOf("_", 3); // 대상 이름의 끝 인덱스
+				if (nameEndId > 3) {
+					String targetName = msg.substring(3, nameEndId);
 					if (name.equals(targetName)) {
-						dos.writeUTF("귓속말 from " + from + ": " + msg.substring(targetNameEndIndex + 1));
+						dos.writeUTF("귓속말 from " + from + ": " + msg.substring(nameEndId + 1));
 					}
 				}
 			} else {
@@ -95,6 +95,7 @@ public class MultiChatServer {
 			}
 		}
 	}
+	
 	/**
 	 * 	서버에서 클라이언트로부터 수신한 메세지를 처리하기 위한 쓰레드 클래스
 	 * 	(Inner클래스에서는 Outer클래스의 멤버들을 직접 접근할 수 있음.

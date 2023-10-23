@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #dropArea {
+            border: 3px solid aquamarine;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 드래그 대상은 외부에서(내 컴퓨터) 가져오기 때문에 draggable속성을 적용할 대상은 없음 -->
+    <div id="dropArea"></div>
+
+    <script>
+
+/* 
+    브라우저는 읽을 수 있는 파일이 오면 새탭을 열어서 보여줌
+    dragover, drop이벤트를 막아야 위 기능을 해제시킨다.
+*/
+
+        let v_dropArea = document.querySelector('#dropArea');
+        v_dropArea.addEventListener('dragover',function(e){
+            e.preventDefault();
+        });
+        v_dropArea.addEventListener('drop',function(){
+            event.preventDefault();
+
+            // dataTransfer : 드래그 드롭에 필요한 객체
+            console.log(event.dataTransfer.files);
+
+             // 파일의 기본정보를 제공하는 File 객체
+            let v_file = event.dataTransfer.files[0];
+
+            // 파일정보를 가공하고 반환받는 메서드와 속성을 제공하는 객체
+            let v_reader = new FileReader();
+            // console.log(v_reader.result); // null, 처리완료 전의 결과를 받았으므로 잘못된 결과를 표현
+
+            // 파일을 dataURL형식으로 읽어 result속성으로 반환하는 역할
+            v_reader.onload = function(){
+                console.log("반환정보 - ",v_reader.result);
+
+                // 드롭된 파일정보를 생성해낼 예정
+                let v_img = document.createElement('img');
+                v_img.src = v_reader.result;
+                v_img.alt = "드롭파일을 생성함";
+
+                v_dropArea.append(v_img);
+
+            }
+            v_reader.readAsDataURL(v_file);
+
+        });
+
+        // dropArea 바깥 영역도 브라우저의 기능 해제
+        window.addEventListener('dragover',function(e){
+            e.preventDefault();
+        });
+        window.addEventListener('drop',function(){
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

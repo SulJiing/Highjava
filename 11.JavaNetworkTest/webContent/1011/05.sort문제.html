@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let v_njs = [
+        {
+        "name" : "민지", "brith" : "2004-05-07","position" : "리더"
+        },
+        {
+        "name" : "하니", "brith" : "2004-10-06", "position" : "댄서/리드보컬"
+        },
+        {
+        "name" : "다니엘", "brith" : "2005-04-11", "position" : "메인보컬"
+        },
+        {
+        "name" : "해린", "brith" : "2006-05-15", "position" : "서브보컬"
+        },
+        {
+        "name" : "혜인", "brith" : "2008-04-21", "position" : "보컬/래퍼"
+        }
+    ];
+
+    // console.log(v_njs); // object array
+    // console.log(v_njs[0].name); // 민지
+
+    // name으로 정렬하고 콘솔로 결과확인
+    v_njs.sort(function(x, y){
+        console.log(x.name,y.name);
+
+        if(x.name >= y.name) { // 오름차순 정렬
+            return 1;
+        } else {
+            return -1; // 자리변경
+        }
+    });
+    let nameSort = Array.from(v_njs);
+    console.log("이름으로 정렬 => ", nameSort);
+
+    // brith로 정렬
+    v_njs.sort(function(a,b){
+       // 숫자로 변환후 a-b 공식 적용
+       // 하이픈(-) 제거
+       // replace(oldtxt,newtxt) - 첫번째 oldtext대상만 치환
+       // oldtxt대상을 '정규식패턴'으로 지정했을 때 모든 대상값 치환
+       // console.log(a.brith.replace("-","")); // 대상을 문자로 찾음
+       // console.log(a.brith.replace(/-/g,"")); // 대상을 정규식으로 찾음
+       // replaceAll() 모든 oldtext 대상으로 치환
+       // console.log(a.brith.replaceAll("-","")); 
+
+       return b.brith.replace(/-/g,"") - a.brith.replace(/-/g,"");
+       
+    });
+    let birthSort = Array.from(v_njs);
+    console.log("생일로 정렬 => ", birthSort);
+
+    // position으로 정렬
+    // => 유니코드로 변경하는 charCodeAt()을 사용해서 마이너스 공식 적용하기!
+    // console.log(v_njs[0].position);
+    // console.log(v_njs[0].position.charCodeAt());
+
+    v_njs.sort(function(x, y){
+        return x.position.charCodeAt() - y.position.charCodeAt();
+    });
+    let poSort = Array.from(v_njs);
+    console.log("포지션으로 정렬 => ",poSort);
+    </script>
+</body>
+</html>

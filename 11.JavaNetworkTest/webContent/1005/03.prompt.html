@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h4>숫자 2개를 입력받고 결과 출력</h4>
+    <button onclick="f_plus()">눌러보삼</button>
+
+    <script>
+        function f_plus() {
+
+            // prompt로 숫자 입력받기
+            let v_su1 = window.prompt("수1 : ","5");
+            let v_su2 = prompt("수2 : ");
+            console.log(v_su1, v_su2);
+
+            // prompt가 반환하는 값의 타입은 string이므로
+            // parseInt()를 사용해 number타입으로 변환 후 연산 진행
+            console.log("결과 => ", parseInt(v_su1)+ parseInt(v_su2));
+        }
+    </script>
+</body>
+</html>

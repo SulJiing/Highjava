@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border-style: dashed;
+}
+</style>
+</head>
+<body>
+    <h4>
+        <input id="number" size="1">
+        <a href="javascript:f_guess()">1부터 100사이 Number Guess</a>
+    </h4>
+    <h4><a href="javascript:f_lotto()">로또 생성</a></h4>
+    <div></div>
+<script>
+
+let f_lotto = function(){
+
+    let lotto = []; //빈 배열
+
+    //1~45범위의 중복되지 않는 숫자 6개 발생
+    for(let i=0; i<6; i++){
+
+        //1~45범위의 랜덤수 생성하기
+        const RND = Math.ceil(Math.random()*45);
+        
+        //배열에 담기전에 중복 검증 - indexOf()
+        if(lotto.indexOf(RND) == -1){ //중복이 아닐 때
+            //배열에 담기
+            lotto[i] = RND;
+            console.log("if>> ", lotto.indexOf(RND) + ", " + RND);
+        }else{
+            //중복이다 >> 6번의 생성 기회중 하나를 소진
+            i -= 1; //진행된 index를 복구
+            console.log("else>> ", lotto.indexOf(RND) + ", " + RND);
+        }
+    }
+    v_div.innerHTML += lotto.sort(function(a,b){return a-b;}) + "<br>";
+};
+
+// Math.ceil(Math.random()*100); // 1-100
+const RND = Math.floor(Math.random()*100) + 1; // 1-100
+
+let v_div = document.querySelector('div'); //출력 공간
+let v_str = ""; //입력된 값 저장
+let v_cnt = 0; //입력한 횟수 저장
+
+function f_guess(){
+
+    let v_numVal = document.querySelector('#number').value;
+    // alert(v_numVal);
+    if(v_cnt>0) v_str += ",,";
+    v_str += v_numVal; // 입력 값 저장
+   
+    //비교문
+    if(v_numVal == RND){
+        v_cnt++;
+        //결과 반환
+        v_div.innerHTML = "총 입력 횟수: " + v_cnt + "<br>";
+        v_div.innerHTML += "입력한 값: " + v_str;
+
+    }else if(v_numVal < RND){
+        v_cnt++;
+        //힌트
+        let hint = "힌트: 더 큰수를 입력하슈 (" + v_cnt + ")";
+        v_div.innerHTML = hint;
+    }else if(v_numVal > RND){
+        v_cnt++;
+        //힌트
+        let hint = "힌트: 더 작은수를 입력하슈 (" + v_cnt + ")";
+        v_div.innerHTML = hint;
+    }
+}
+</script>
+</body>
+</html>

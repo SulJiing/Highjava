@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 자바스크립트는 조건문의 조건절에 boolean이 아닌 다른 타입을 넣어도 자동 형변환 해줌
+        // 문자열은 ""만 false로 형변환되고 나머지("",공백포함)는 true로 형변환된다.
+        // 숫자는 0만 false, 나머지(음수포함)는 true로 형변환된다.
+        if(1) {
+            alert("TRUE");
+        } else {
+            alert("FALSE");
+        }
+
+        let sum =0; // i 변수값을 담을 공간
+        let num =0; // 반복문을 빠져나올 조건 값으로 활용
+        // break, continue
+        for(let i=0; i<10; i++) {
+            alert("i변수정보 => "+i);
+            if(i==2) continue; // 해당 조건은 스킵하고 아래 내용을 실행하지 않음
+
+            sum += i;
+            alert(sum);
+
+            num++;
+            if(num == 3) {
+                break; // 가장 가까운 반복문을 빠져나감
+            }
+        }
+
+    </script>
+</body>
+</html>

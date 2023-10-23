@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+    <!-- | 순번 | 이름 | 인지도 | -->
+    <h4>데이터를 테이블 형태로 출력하자</h4>
+    <div></div>
+
+    <script>
+        // object
+        let levels = {
+            "dd001" : "월클",
+            "dd002" : "원탑",
+            "dd003" : "실력파",
+            "dd004" : "호불호",
+            "dd000" : "미확인"
+        };
+        // object array
+        let idols = [
+        { name : "BTS", level : "dd001"},
+        { name : "뉴진스", level : "dd002"},
+        { name : "블랙핑크", level : "dd001"},
+        { name : "노라조", level : "dd004"},
+        { name : "마마무", level : "dd003"},
+        { name : "임영웅", level : "dd002"},
+        { name : "슬옵디", level : "dd000"}
+    ];
+
+    // 테이블 작성하기
+    let v_tbl = "<table border=1>";
+        v_tbl += "<tr><th>순번</th><th>이름</th><th>인지도</th></tr>";
+        
+        // 숫자, 변수는 배열식 접근법으로 접근해야 함
+        for(let i=0; i<idols.length; i++) {
+        v_tbl += "<tr><td>"+(i+1)+"</td>";
+        v_tbl += "<td>"+idols[i].name+"</td>";
+        v_tbl += "<td>"+levels[idols[i].level]+"</td></tr>";
+    }
+    v_tbl += "</table>";
+
+        document.querySelector('div').innerHTML = v_tbl;
+    </script>
+</body>
+</html>

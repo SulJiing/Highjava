@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#wrapper{
+     border: 3px solid pink;
+     height: 100px;
+     width: 70%;
+ }
+</style>
+</head>
+<body>
+    <!-- 4행 2열 테이블 생성하기 -->
+    <!-- table>tr*4>td*2 -->
+   <table border="">
+    <tr>
+    <!-- input(type=text는 생략가능) 요소는 단일 라인 텍스트 필드 제공 -->
+    <td>이&nbsp;&nbsp;&nbsp;름<input tabindex="1" autofocus></td>
+    <td>별&nbsp;&nbsp;&nbsp;명<input tabindex="4" ></td>
+   </tr>
+   <tr>
+    <!-- 포커싱을 주고싶지 않을 항목을 제외시킬 때 -->
+    <td>나&nbsp;&nbsp;&nbsp;이<input tabindex="-1" ></td>
+    <td>주&nbsp;&nbsp;&nbsp;소<input tabindex="5" ></td>
+   </tr>
+   <tr>
+    <td>전&nbsp;&nbsp;&nbsp;화<input tabindex="3"></td>
+    <td>모바일<input tabindex="6" ></td>
+   </tr>
+   <tr>
+    <td colspan="2">메&nbsp;&nbsp;&nbsp;모<br>
+        <!-- <textarea></textarea> 요소는 다중라인 텍스트 필드 제공 -->
+        <!-- 줄넘김 기호(\r 캐리지리턴(carrage return), \n 라인피드(line feed))가 내용과 함께 삽입 
+        추후 입력한 내용을 출력하는 위치에서 줄바꿈처리 가능하게 함-->
+        <textarea cols="60" rows="10">
+    </textarea>
+    </td>
+    <!-- <td></td> -->
+   </tr>
+</table>
+    <!-- 포커스 받을 수 없는 요소를 대상으로 포커스를 부여할 때 사용(0, 진행순서와는 무관) -->
+    <div id = "wrapper" tabindex="0" contenteditable>
+        내용 존재시 영역을 구별할 수 있지만
+        contenteditable - text 필드처럼 내용을 입력할 수 있도록 함
+    </div>
+</body>
+</html>

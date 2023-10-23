@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #container {
+            border: 4px solid blue;
+            width: 600px;
+            height: 200px;
+            /* 요소 사이 공백을 제거했지만 텍스트 표현 불가의 문제 발생*/
+            /* font-size: 0; */
+        }
+        .e_div {
+            border: 1px dashed red;
+            width: 200px;
+            height: 100px;
+            /* display: inline-block; */
+            box-sizing: border-box;
+            /* float는 블록상태를 무력화시켜 수평으로 배치시키는 속성
+            요소가 붕 뜬 형태로 왼쪽 또는 오른쪼긍로 배치*/
+            float: left; 
+        }
+        .c {
+            /* 왼쪽 또는 오른쪽으로 배치되고 있는 흐름을 끊어주는 속성 */
+            clear: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- div#container>div.e_div*5 -->
+    <div id="container">
+        <div class="e_div">Aaaaaa</div>
+        <div class="e_div">Bbbbbb</div>
+        <div class="e_div c">Cccccc</div>
+        <div class="e_div">Dddddd</div>
+        <div class="e_div">Eeeeee</div>
+        <div class="e_div">Ffffff</div>
+        <div class="e_div c">Gggggg</div>
+        <div class="e_div">Hhhhhh</div>
+    </div>
+</body>
+</html>

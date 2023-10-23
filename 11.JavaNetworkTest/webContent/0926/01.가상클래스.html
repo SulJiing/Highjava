@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* 상태에 의한 선택자 지정 */
+        a:link{
+            color: hotpink;
+        }
+        a:visited{
+            color: red;
+        }
+        a:hover{
+            background-color: black;
+            color: white;
+        }
+        a:active{
+            background-color: lime;
+        }
+        /* 구조에 의한 선택자 지정 */
+        tr:first-child{
+            background-color: lightseagreen;
+        }
+        tr:last-child{
+            background-color: orange;
+        }
+        
+        /* odd - 홀수 / even - 짝수 */
+        /* tr:nth-child(odd){
+            2n - 배수
+        }
+        tr:nth-child(3n){} */
+
+        /* tr:nth-child(자식요소 관련은 index가 1부터 시작) */
+        tr:nth-child(4){
+            background-color: gold;
+        }
+    </style>
+</head>
+<body>
+    <table border="">
+        <tr >
+            <td><a href="http://www.cgv.co.kr">CGV</a></td>
+        </tr>
+        <tr>
+            <td>냉무2</td>
+        </tr>
+        <tr>
+            <td>냉무3 </td>
+        </tr>
+        <tr>
+            <td>냉무4 </td>
+        </tr>
+        <tr>
+            <td>냉무5 </td>
+        </tr>
+    </table>
+</body>
+</html>

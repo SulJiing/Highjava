@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+                          <!-- 함수로 인자를 넘기고 -->
+    <select id="id_sel" onchange="f_sel(this)">
+        <option value="0">선택</option>
+        <option value="heartping">하츄핑</option>
+        <option value="happing">해핑</option>
+        <option value="shyping">부끄핑</option>
+        <option value="nonoping">시러핑</option>
+        <option value="lovping">바네핑</option>
+        <option value="coolping">덜덜핑</option>
+        <option value="slepping">코자핑</option>
+    </select>
+
+<script>
+      // 넘겨주는 인자를 매개변수로 받음
+function f_sel(p_this){
+    // 단일 선택은 value 키워드로 간단하게 얻어옴
+    console.log(id_sel.value," | ", p_this.value);
+
+    // 속성정보로 요소 자체를 얻어 변수에 담음
+   var v_sel = document.querySelector('[value='+p_this.value+']');
+
+   // 요소의 내부 컨텐츠 정보를 경고창으로 보여줌
+   alert(v_sel.innerHTML+" 사주라");
+}
+</script>
+</body>
+</html>

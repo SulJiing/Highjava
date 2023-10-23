@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        border: 2px solid black;
+        margin: 30px;
+    }
+</style>
+<body>
+    <h4>
+        이벤트 메서드
+        preventDefault()  : 기본 장착된 기능 막음
+        stopPropagation() : 이벤트 버블링 막음
+    </h4>
+
+    <a href="../imeage/집최고짱구.jfif" class="view">이미지 보기</a>
+    <a href="../imeage/집최고짱구.jfif" class="view" download="꽐랄.jpg">이미지 다운로드</a>
+
+    <form action="404.html">
+        <button>form안</button><!-- button 요소가 form안에 배치 됐을 때 submit기능 가짐 -->
+    </form>
+    <button>form밖</button>
+
+    <div id="gmom">
+        할맘
+        <div id="mom">
+            맘 
+            <div id="me">나</div>
+        </div>
+    </div>
+
+    <script>
+        // 이벤트 버블링 : 이벤트 발생시 대상요소의 부모영역 이벤트까지 모두 실행되는 현상
+        document.querySelector('#me').addEventListener('click',function(){
+            event.stopPropagation();
+            this.style.backgroundColor = 'rgb(255,125,103)';
+        });
+        document.querySelector('#mom').addEventListener('click',function(e){
+            e.stopPropagation();
+            this.style.backgroundColor = 'rgb(155,255,43)';
+        });
+        document.querySelector('#gmom').addEventListener('click',function(){
+            this.style.backgroundColor = '#e610ff';
+        });
+
+        let v_views = document.getElementsByClassName('view');
+        // querySelector로 여러 요소 접근 시 첫번째 대상요소만 반환
+        let v_btn = document.querySelector('button'); 
+
+        v_btn.addEventListener('click',function(){
+            event.preventDefault(); // submit 기능 중지
+        });
+
+        v_views[0].addEventListener('click',function(e){
+            e.preventDefault(); // 이벤트 대상 요소의 기본기능 중지
+        });
+
+        v_views[1].addEventListener('click',function(){
+            event.preventDefault(); // 다운로드 기능 중지
+        });
+
+    </script>
+</body>
+</html>

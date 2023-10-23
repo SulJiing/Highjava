@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 2px double red;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="계산" onclick="f_calc()">
+    <div>출력영역</div>
+
+    <script>
+    function f_calc() {
+        //숫자 2, 연산자 1 입력받기
+        // 연산 전에 정수형으로 변경하기!
+        let su1 = parseInt(prompt("숫자1"));
+        let oprt = prompt("연산자","+,-,*,/ 중 입력");
+        let su2 = parseInt(prompt("숫자2"));
+
+        console.log(typeof su1, su2, oprt);
+
+        // isNaN() => 값이 NaN일때 true반환
+        if(isNaN(su1&&su2)){
+            alert("숫자만 입력하세요");
+            return f_calc();
+        }
+
+        let hap = "";
+
+        /* if()
+        - 조건에 부합할 때까지 순차적으로 모든 경우의 수를 비교 */
+        if(oprt == '+') {
+            hap = su1 + su2;
+        } else if(oprt == '-') {
+            hap = su1 - su2;
+        } else if(oprt == '*') {
+            hap = su1 * su2;
+        } else if(oprt=='/'){
+            hap = su1 / su2;
+        } else {
+            alert("지정한 연산자를 입력하세요")
+            return f_calc();
+        }
+
+        /* switch() 
+        - 비교변수가 가진 값에 따라 실행문 실행
+        - 조건에 맞는 항목으로 바로 이동 */    
+        switch(oprt) {
+            case "+":
+            hap = su1 + su2;
+            break;
+            case "-":
+            hap = su1 - su2;
+            break;
+            case "*":
+            hap = su1 * su2;
+            break;
+            case "/":
+            hap = su1 / su2;
+            break;
+            default:
+            alert("다시 입력하세요");
+            return f_calc();
+        }
+        console.log("합 => "+ hap);
+        
+        // 출력영역(div)에 결과 값을 출력해봅시다
+        let v_div = document.querySelector('div');
+        v_div.innerText = su1 + oprt + su2 +"="+ hap;
+    }
+    </script>
+</body>
+</html>

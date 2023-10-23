@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //복사 (call by value)
+    var v_coffee = "커피";
+    var v_iceCoffee = v_coffee;
+    console.log(v_coffee,v_iceCoffee);
+
+    v_iceCoffee = "냉커피";
+    console.log(v_coffee,v_iceCoffee);
+
+    // 참조 (call by reference)
+    var v_source = ["로제","크림",'오일','페스토'];
+    var v_pasta = v_source;
+    console.log(v_source,v_pasta);
+
+    v_pasta[2] = "51";
+    console.log(v_source,v_pasta);
+</script>
+</body>
+</html>

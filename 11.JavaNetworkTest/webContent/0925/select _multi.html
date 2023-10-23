@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <select id="id_sel" multiple size="7" onclick="f_sel(this)">
+        <option value="heartping">하츄핑</option>
+        <option value="happing">해핑</option>
+        <option value="shyping">부끄핑</option>
+        <option value="nonoping">시러핑</option>
+        <option value="lovping">바네핑</option>
+        <option value="coolping">덜덜핑</option>
+        <option value="sleeping">코자핑</option>
+    </select>
+<script>
+function f_sel(p_this){
+    // console.log( p_this.options );
+    var v_opts = p_this.options;
+    
+    var v_arr = [];
+    for(var i=0; i<v_opts.length; i++){
+        // console.log( v_opts[i].value + " ==> " + v_opts[i].selected );
+        
+        //결과를 콘솔 또는 경고창으로 출력해보기
+        if(v_opts[i].selected){
+            v_arr.push(v_opts[i].innerHTML + "(" + v_opts[i].value + ")");
+        }
+    }
+    console.log(v_arr + " 선택");
+}
+</script>
+</body>
+</html>

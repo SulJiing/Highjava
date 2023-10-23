@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Shadows+Into+Light&display=swap');
+    /* fonr 축약 선언시 유의사항
+        1. font-size, font-family는 필수 선언(-size/line-height는 생략가능)
+        2. 항목 생략시 기본값으로 적용됨
+        3. 선언 순서를 꼭 지켜야 함
+            font-style, -variant, -weight, -sizw/line-height, -family 순
+    
+     폰트에서 사용하는 단위별 기본값 
+        12pt / 16px / 1em / 100% / medium
+    */
+    #p1 {
+    font: italic small-caps bold 2em fantasy;
+    }
+    /* 구글 웹폰트 => 설치없이 서버에서 내려받아 사용하는 폰트
+    여러개 입력시 순서대로 적용, 한글 글꼴을 뒤에 두면 한글과 영어 두 글꼴을 표현할 수 있음
+    사용할 폰트와 마지막 항목은 대체폰트로 지정 */
+    #p2{
+        font-family: 'Shadows Into Light','Nanum Brush Script', cursive;
+    }
+</style>
+</head>
+<body>
+    <p id="p1">안녕 오랜만이야 물음표없이 Hi, long time no see. Without a question mark</p>
+    <p id="p2">참 너다운 목소리 What a voice you have</p>
+</body>
+</html>

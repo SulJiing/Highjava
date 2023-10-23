@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" id="fileBtn" multiple>
+    <div></div>
+
+    <script>
+        let v_fBtn = document.querySelector('#fileBtn');
+        v_fBtn.addEventListener('change', function(){
+            let v_file = this.files[0]; // 한개
+            let v_files = this.files; // 여러개
+            console.log(v_file);
+
+            for(let i =0; i<v_files.length; i++) {
+            let rd = new FileReader();
+            rd.onload = function(){
+                let v_img = document.createElement('img');
+                v_img.src = rd.result; // src값
+                v_img.width = 100;
+                // v_img.style.width = "100px";
+                // v_img.setAttribute('width','100px');
+                v_img.alt = v_files[i].name;
+                v_img.style.display = "block";
+                document.querySelector('div').append(v_img);
+            }
+            rd.readAsDataURL(v_files[i]);
+        }
+        });
+    </script>
+</body>
+</html>

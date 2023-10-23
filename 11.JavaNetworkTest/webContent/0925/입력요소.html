@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+ div{
+    border: 3px solid olive;
+    margin: 10px;
+    padding: 10px;
+ }
+</style>
+</head>
+<body>
+    <div>
+        <!-- name 속성으로 그룹핑하여 항목 중 하나의 값만 체크 -->
+        남 <input type="radio" name="rdo" value="male">
+        여 <input type="radio" name="rdo" value="female" checked="checked">
+        <input type="button" value="선택" onclick="f_chk1()">
+    </div>
+    <div>
+        당신의 취미는 
+        &nbsp;
+        <input type="button" value="선택" onclick="f_chk2()"> <br>
+        <input type="checkbox" name="hobby" value="java"> 자바
+        <input type="checkbox" name="hobby" value="js"> 자바스크립트
+        <input type="checkbox" name="hobby" value="html" checked disabled> HTML
+        <input type="checkbox" name="hobby" value="css"> CSS
+        <input type="checkbox" name="hobby" value="server"> 서버
+    </div>
+<script>
+function f_chk2(){
+    // console.log(document.getElementsByName('hobby')); // 구버전
+//    comsole.log(document.querySelectorAll('[name="hobby"]')) // 뉴버전
+   var v_chks = document.querySelectorAll('[name="hobby"]') // 뉴버전
+
+   // 변수 선언을 위한 키워드 var(iable) - 구버전
+  //  var v_arr = []; // 체크항목 넣기 1 - 빈 배열
+   var v_str = ""; //체크항목 넣기 2 - 빈 문자열
+   var count = 0; // 쉼표처리를 위한 변수
+   
+   for(var i=0; i <v_chks.length; i++){
+    console.log('체크상태 => ',v_chks[i].checked);
+
+        // 체크상태가 true인 항목에 대해서만...
+    if(v_chks[i].checked){
+        // v_arr.push(v_chks[i].value);
+        // v_arr.push(v_chks[i].nextSibling.textContent.trim()); // 노드 속성을 활용함(추후 DOM에서 배울 예정)
+        if(count>0) v_str+=", ";
+        v_str+=v_chks[i].value;
+        count++;
+    }
+}
+// alert (인자는 하나만 적용, 나머지는 무시됨)
+// alert("당신의 취미는 "+v_arr);
+alert("당신의 취미는 "+v_str);
+}
+function f_chk1(){
+
+    // 선택된 값의 정보를 콘솔로 출력해보기
+    // 요소를 얻어내는 메서드 => 구버전 getElement~~~ 시리즈 사용
+    // console.log(getElementsByName('rdo')); // 유사배열
+
+   var v_rdos = document.getElementsByName('rdo');
+
+    for(var i=0; i<v_rdos.length; i++){
+        // 갯수만큼 반복실행
+        console.log("요소별 체크여부 =>", v_rdos[i].checked);
+
+        if(v_rdos[i].checked){
+            // alert("당신은 "+v_rdos[i].value+"이군요!!");
+            alert("당신은 "+v_rdos[i].previousSibling.textContent.trim()+"이군요!!"); // DOM 속성과 메서드를 활용
+        }
+    }
+} 
+
+ </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+        }
+
+        #wrapper {
+            font-size: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper"><img src="../imeage/오똑하지짱구.jfif" alt="알라">
+        <img src="../imeage/놀란짱구.jfif" alt="르세라핌">
+        <img src="../imeage/머리밥흰둥이.jfif" alt="사자">
+        <img src="../imeage/마스크짱구.jfif" alt="세븐틴">
+    </div>
+    <input type="button" id="left" value="&lt;&lt;&lt;">
+    <input type="button" id="stop" value="||">
+    <input type="button" id="right" value="&gt;&gt;&gt;">
+
+    <script>
+        //left버튼 appendChild
+        let timer;
+        let v_left = document.querySelector('#left')
+
+        v_left.addEventListener('click', function () {
+            timer = setInterval(f_moveleft, 1000);
+        });
+
+        function f_moveleft() {
+            //부모 영역의 자식요소 중 첫번째 항목 가져오기
+            let v_parent = document.querySelector('#wrapper');
+
+            //노드속성 - childNodes, element노드속성 - children
+            // console.log(v_parent.children[0]);
+            let firstChild = v_parent.children[0];
+            v_parent.append(firstChild);
+
+            //기능 실행 후 버튼 감추기
+            // v_left.style.display = "none";
+            // v_right.style.display = "none";
+            v_left.setAttribute("disabled", true);
+            v_right.setAttribute("disabled", true);
+        }
+
+
+        let v_right = document.querySelector('#right')
+
+        v_right.addEventListener('click', function () {
+            timer = setInterval(f_moveright, 1000);
+        });
+
+        function f_moveright() {
+            //자식요소 중 마지막 항목 가져오기 - (자식요소가 몇개인지 정확히 모를 때(index정보를 모를 때) >> lastChild)
+            //노드속성 lastChild, element노드속성 lastElementChild
+            let v_parent = document.querySelector('#wrapper');
+
+            let v_lastChild = v_parent.lastElementChild;
+            v_parent.insertBefore(v_lastChild, v_parent.children[0]);
+            //기능 실행 후 버튼 감추기
+            // v_left.style.display = "none";
+            // v_right.style.display = "none";
+            v_left.setAttribute("disabled", true);
+            v_right.setAttribute("disabled", true);
+        }
+
+        document.querySelector('#stop').addEventListener('click', function () {
+            clearInterval(timer);
+
+            //사라진 버튼 보여주기
+            v_left.style.display = "inline";
+            v_left.removeAttribute("disabled")
+        })
+    </script>
+</body>
+
+</html>

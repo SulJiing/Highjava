@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            border-top: 2px solid gray;
+            border-bottom: 2px solid gray;
+        }
+
+        img {
+            width: 70px;
+            height: 70px;
+            margin: 5px;
+        }
+
+        #wrapper {
+            font-size: 0;
+        }
+    </style>
+</head>
+
+<body>
+        <div id="wrapper"><img src="../imeage/오똑하지짱구.jfif" alt="알라">
+            <img src="../imeage/놀란짱구.jfif" alt="르세라핌">
+            <img src="../imeage/머리밥흰둥이.jfif" alt="사자">
+            <img src="../imeage/마스크짱구.jfif" alt="세븐틴">
+    </div>
+    <input type="button" id="left" value="&lt;&lt;">
+    <input type="button" id="stop" value="||">
+    <input type="button" id="right" value="&gt;&gt;">
+
+    <script>
+        let v_parent = document.querySelector('#wrapper');
+        let v_left = document.querySelector('#left')
+        let v_right = document.querySelector('#right')
+        let timer;
+
+        //proxy pattern - 대리로 대신 처리하여 로직의 흐름을 제어하는 행동 패턴
+
+        let v_flag = false;
+        function f_proxyLeft(){
+            if(!v_flag) {
+                f_moveleft();
+                v_flag = true;
+            }
+        }
+
+        function f_proxyRight() {
+            if(!v_flag) {
+                f_moveright();
+                v_flag = true;
+            }
+        }
+
+        function f_proxyStop() {
+            f_stop();
+            v_flag = false;
+        }
+
+
+        v_left.addEventListener('click',f_proxyLeft);
+
+        function f_moveleft() {
+            let firstChild = v_parent.children[0];
+            v_parent.append(firstChild);
+            timer = setTimeout(f_moveleft,1000);
+        }
+
+        v_right.onclick = f_proxyRight;
+        // v_right.ondblclick = f_proxyRight;
+
+        function f_moveright() {
+            let v_lastChild = v_parent.lastElementChild;
+            v_parent.insertBefore(v_lastChild, v_parent.children[0]);
+            timer = setTimeout(f_moveright,1000);
+        }
+
+        document.querySelector('#stop').addEventListener('click', f_proxyStop)
+
+        function f_stop() {
+            // clearInterval(timer);
+            // >> 반환받는 객체를 공통으로 사용하므로 기술적인 문제는 없으나
+            //개발자의 혼란을 막기위해 혼용 사용을 지양함
+            clearTimeout(timer);
+        }
+    </script>
+</body>
+
+</html>

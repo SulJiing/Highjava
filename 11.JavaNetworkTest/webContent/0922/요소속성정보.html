@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #id_div{
+            width: 70%;
+            height: 100px;
+            border: 3px solid black;
+            background-color: rgb(44, 175, 133);
+        }
+    </style>
+</head>
+<body>
+    <!-- 입력양식요소 쉽게 생성하기 input:type 명 -->
+    <!-- 각 태그는 하나의 요소이자 객체 -->
+    <!-- 객체는 속성과 메서드로 구성되어 있고, 객체의 속성 및 메서드로 접근할 때 점연산자 또는 배열식 접근법을 이용한다 -->
+    <input type="button" id="id_btn" name="nm_btn" value="클릭" onclick="f_btn()">
+    
+    <!-- document : 스크립트에서 html문서를 가리키는 예약어 -->
+    <div id ="id_div" onclick="f_div()">
+        클릭하면 innerHTML요소 사이 컨텐츠 정보를 얻음
+    </div>
+    <script>
+        function f_div(){
+            alert("div를 눌렀습니다!@!");
+
+            // 헤더영역 요소를 가져와보자 - 테스트 방식으로
+            console.log(document.head); // 문서 자체를 가리키는 document의 소속 요소에 접근하여 대상을 콘솔에 출력
+            console.log(document.head.innerHTML);
+            document.head.innerHTML = "<title>어떠한 값</title>";
+            // 헤더영역 요소를 가져와보자 - 정석 방식으로
+            console.log(document.querySelector('head'));
+
+            // html을 구성하는 전체요소를 가져와보자
+            // console.log(document.querySelector('html').innerHTML);
+            console.log(document.querySelector('html').outerHTML);
+
+        }
+        function f_btn(){
+            // 버튼이 가지는 속성들의 정보를 콘솔에서 확인 예정
+            // console.log("개발자모드(F12)의 콘솔탭에서 정보 확인가능")
+
+            // id의 값을 통해 해당 요소 전체를 반환하여 콘솔로 확인
+            console.log("id속성 값으로 요소 전체 반환 >> : ",id_btn); //간단하게 테스트하는 용도로 접근시에만 활용
+            console.log("input버튼요소의 type속성 값 : ",id_btn.type);
+            console.log("input버튼요소의 id속성 값 : ",id_btn.id);
+            console.log("input버튼요소의 name속성 값 : ",id_btn["name"]);
+            console.log("input버튼요소의 value속성 값 :" ,id_btn.value);
+            console.log("input버튼요소의 onclick속성 값 : ",id_btn.onclick);
+            id_btn.value = "버튼으로 이름변경"; //set
+            id_btn["name"] = "name_Btn";
+
+            // console.log("정석적인 방식으로 요소얻기>>"),document.querySelector("#id_btn")
+            var idBtn1 = document.getElementById('id_btn'); // 구버전 (ES2)
+            var idBtn2 = document.querySelector("#id_btn"); //new버전 (ES6)메서드
+            console.log(">>>",idBtn1.id);
+            console.log(">>>",idBtn1.name);
+            console.log(">>>",idBtn1.value);
+            console.log(">>>",idBtn2.id);
+            console.log(">>>",idBtn2.name);
+            console.log(">>>",idBtn2.value);
+        }
+    </script>
+</body>
+</html>

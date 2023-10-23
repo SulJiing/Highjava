@@ -74,7 +74,9 @@ public class T01_HTTP_Server {
 	 * @return 헤더정보를 담은 바이트 배열
 	 */
 	private byte[] makeResponseHeader(int contentLength, String mimeType) {
-		String header = "HTTP/1.1 200 OK\r\n"+"Server: MyHttpServer 1.0\r\n"+ "Content-length:" + contentLength + "\r\n"
+		String header = "HTTP/1.1 200 OK\r\n" // status Line(여기도 헤더임)
+				+ "Server: MyHttpServer 1.0\r\n" // 헤더
+				+ "Content-length:" + contentLength + "\r\n"
 				+ "Content-type: " + mimeType + " charset=" + this.encoding;
 		
 		return header.getBytes();
@@ -155,7 +157,7 @@ public class T01_HTTP_Server {
 
 				File file = new File(filePath);
 				if (!file.exists()) {
-//					makeErrorPage(out, 404, "NOT FOUND");
+					makeErrorPage(out, 404, "NOT FOUND");
 					return;
 				}
 
@@ -178,6 +180,31 @@ public class T01_HTTP_Server {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			}
+		}
+	}
+	
+	/**
+	 * 	에러 페이지 생성
+	 * @param out
+	 * @param statusCode
+	 * @param errMsg
+	 */
+	private void makeErrorPage(OutputStream out, int statusCode, String errMsg) {
+		
+		String statusLine = "HTTP/1.1" + " " + statusCode + " " + errMsg;
+		
+		try {
+			out.write(statusLine.getBytes());
+			out.flush();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}

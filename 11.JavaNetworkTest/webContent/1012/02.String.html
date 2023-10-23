@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            문자열 string 기본타입(primitive type, 불변)
+
+            기본타입은 객체가 아니므로 속성과 메서드가 존재하지 않는 데이터
+            하지만 자바스크립트 엔진이 내부적으로 기본타입을 래퍼객체로 변화시킴
+            (null, nudefined를 제외한 5가지 기본타입-string,number,symbol,bigInt,boolean은 래퍼객체를 사용할 수 있음)
+
+            기본타입은 속성과 메서드 정의가 불가능하지만,
+            래퍼객체로 변환 후 제공되는 속성과 메서드만을 사용해 값처리가 가능하다.
+            => 임시적/암무적으로 래퍼객체를 만들고 처리 후 메모리에서 삭제되는 구조
+        */
+
+        // 문자열 변수 생성시 내부적으로 new String()을 호출하여 임시적 래퍼객체로 변환
+        let v_str = "String 객체는 원시타입인 문자열을 다룰 때 유용한 프로퍼티와 메서드를 제공하는 Wrapper객체";
+
+        // index위치의 문자반환
+        console.log(v_str.charAt(5)); // g
+
+        // 문자를 유니코드(ASCII코드)로 반환
+        console.log(v_str.charCodeAt(5)); // g의 유니코드
+
+        /* 아스키코드와 유니코드
+            ASCII(American Standard Code for Information Interchage, 미국 정보 교환 표준 부호)
+            컴퓨터는 문자를 숫자로 기억하고 표현한다.
+            모든 사람이 공통으로 쓰는 표준 규격이 필요했고 1967년에 알파벳을 기초로 둔 문자 인코딩 탄생
+            0~127까지의 숫자로 문자를 표현했음(제어, 공백, 구두점, 숫자, 아파벳으로 구성)
+
+            unicode
+            전세계 모든 글자들을 표현할 수 있는 표준코드
+            종류는 utf-8, utf-16 등이 있고, utf-8은 웹페이지에서 사용되는 유니코드 인코딩 방식
+
+            euc-kr
+            2byte로 한글을 표현한 인코딩 방식이지만, '뷁'등 모든 한글문자 표현은 불가능
+        */
+       
+        console.log(v_str.indexOf("S",1)); // -1
+        console.log(v_str.indexOf("객체",53));
+
+        // concat 문자열 연결 - 더하기 연산자와 동일기능
+        let a = "A";
+        let b = "ppl";
+        let c = "e";
+        let abc = a.concat(b,c);
+        console.log(abc[2]);
+
+        // trim 앞뒤 공백 제거(데이터 사이 공백은 유지)
+        let data = "               짱      구";
+        data.trim();
+        console.log(data.length);
+
+        // replace() 찾은 문자열을 새로운 문자열로 변경
+        // 변경된 내용은 원본에 반영되지 않음 
+        //  => 새 변수에 담아서 사용하거나 원본변수에 다시 대입할 것
+        let newStr = v_str.replace('객체'," Object");
+        newStr = v_str.replace(/객체/g," Object"); // 모든 대상 바꾸기 - replaceAll() 사용
+        newStr = v_str.replaceAll('객체','ㄱㅐㅊㅔㄱ');
+        console.log(v_str);
+        console.log(newStr);
+
+        // search - indexOf()와 같이 문자의 위치 index를 반환, 정규식 활용이 차이점
+        console.log(v_str.search(/s/i));
+
+        // match - 정규식으로 검색 후 일치내용을 배열로 반환
+        let v_rtn = v_str.match(/r/g);
+        console.log(v_rtn);
+
+        // substring(str,end미포함), slice(str,end미포함), substr(str,길이)
+        console.log(v_str.substring(10,15)); // 원시타입    
+        console.log(v_str.slice(10,15)); // 원시타입    
+        console.log(v_str.substr(10,5)); // 원시타입
+        
+        // split(separator,limit) - 구분자를 통해 문자열을 분리해 배열로 반환
+        console.log("구분자 미지정 =>",v_str.split()); // 원본유지
+        console.log(v_str.split("")); // 문자단위로 모두 쪼개짐
+        console.log(v_str.split(" ")); // 공백단위로 모두 쪼개짐
+        console.log(v_str.split(" ",4)[1]);
+        
+    </script>
+</body>
+</html>

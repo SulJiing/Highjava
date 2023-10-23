@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            color: yellow;
+            background-color: black;
+            border: 4px solid lime;
+        }
+    </style>
+</head>
+<body>
+    <div>
+            Max 3개까지만 체크하기 <br>
+            초과시 경고창 출력과 함께 체크된 항목 해제
+    </div>
+
+    <input type="checkbox" value="java" onclick="f_body(this)">자바
+    <input type="checkbox" value="js" onclick="f_body(this)">자바스크립트
+    <input type="checkbox" value="html" onclick="f_body(this)">HTML
+    <input type="checkbox" value="css" onclick="f_body(this)">CSS
+    <input type="checkbox" value="server" onclick="f_body(this)">서버
+<script>
+
+    let v_chkCount = 0; // 갯수체크 변수
+    // 표현식 함수 형태로 작성
+    let f_body = function(p_this){
+    console.log(p_this, p_this.checked); // 선택한 요소를 매개변수로 전달받음
+
+    if(p_this.checked) {
+        v_chkCount++;
+    } else {
+        v_chkCount--;
+    }
+    
+    // max 3개까지만 체크
+    if(v_chkCount > 3) {
+        alert("3개까지만 체크가능합니다.");
+        p_this.checked = false; // 체크상태 해제시킴
+        v_chkCount--;
+    }
+    console.log("갯수=>",v_chkCount);
+};
+</script>
+</body>
+</html>

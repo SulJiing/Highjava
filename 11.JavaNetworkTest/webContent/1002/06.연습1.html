@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    img {
+        width: 150px;
+        height: 200px;
+    }
+    h3 {
+        background-color: pink;
+    }
+    span {
+        background-color: lightblue;
+        color:  red;
+    }
+    /* body의 자식 div이거나 class가 wrapper인 요소 */
+   .wrapper, body > div {
+        border : 1px dashed red;
+        width: calc(50% - 10px);
+        float: left;
+        /* 바깥쪽 여백을 제외한 나머지(테두리, 안쪽여백만)만 계산식에 포함*/
+        box-sizing: border-box; 
+        margin: 1px;
+    }
+    /* 여러 요소를 선택했을 때 (자식요소로 판단하여) index가 1부터 시작 */ 
+    div:nth-of-type(2) span {
+        color: olive;
+        font-weight: bold;
+        height: 500vh;
+    }
+</style>
+<body>
+    <div>
+        <p><h3>사자</h3></p>
+        <img src="../imeage/너무하시네.jfif" alt=""> 
+        <div>
+        사자는 고양이과 표범 포유동물.... <span>백수의 왕</span>으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, <span>왕권의 상징</span>
+    </div>
+    </div>
+    <div>
+        <p><h3>호랑이</h3></p>
+        <img src="../imeage/집최고짱구.jfif" alt="">
+        <div>
+        사자는 고양이과 표범 포유동물.... <span>백수의 왕</span>으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, 왕권의 상징 
+        사자는 고양이과 표범 포유동물.... 백수의 왕으로 불리며, <span>왕권의 상징</span>
+    </div>
+    </div>
+</body>
+</html>

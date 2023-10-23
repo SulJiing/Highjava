@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 객체 생성하기 1 - 리터럴 방식
+        // 정의형태 {property key : property value}
+        // {}안에 아무것도 넣지않을 경우 빈 객체를 생성함
+        // property value가 함수일 때 '메서드'라고 함
+        let dripCoffee = {
+            제품명: "탄자니아",
+            "식품유형": '커피',
+            '내용량': "10g",
+            원재료명:"커피원두 100%",
+            유통기한 : new Date("2023.10.16"),
+            brew : function(){
+                return "원두를 뜨거운 물로 1분간 불린 후"+parseInt(this.내용량)*12+"ml 추출";
+            },
+            caution(){ // ES6 메서드 축약방식으로 작성(원랜 위랑 똑같음)
+                return this.식품 + "추출시 화상에 주의";
+            }
+        };
+        console.log(dripCoffee);
+        console.log(dripCoffee.제품명); // 기본적으로 점 연산자로 접근
+        console.log(dripCoffee['원재료명']); // 배열식 접근법에서 키정보는 문자열로 표시할 것
+        console.log(dripCoffee.brew); // 함수 자체(FP)
+        console.log(dripCoffee.brew()); // (return)반환문
+        console.log(dripCoffee['caution']());
+
+        // 객체 생성하기 2 - 내장객체의 생성자를 이용하는 방식
+        // new 연산자를 통해 내장객체의 생성자함수를 호출하여 객체 생성
+        let maxim = new Object();
+        maxim.제품명 = "맥심화이트골드",
+        maxim.내용량 = "11.7g",
+        maxim.원재료명 = "커피 10.25%",
+        maxim.유통기한 = new Date("2023.4.8"),
+        maxim.try = function(){
+            return parseInt(this.내용량)*5+"ml정도의 뜨거운 물을 부어 섭취";
+        },
+        maxim.info = function() {
+            let today = new Date().getTime; // 1970년~오늘날짜 까지의 경과시간(ms)
+            let expiry = this.유통기한.getTime(); // 1970년~유통기한 까지의 경과시간(ms)
+            let result = today - expiry; // 양수일 때 유통기한 경과
+            if(result >0){
+                return "유통기한 경과제품";
+            }
+            return this['유통기한'].toLocaleDateString()+"까지";
+        }
+
+        console.log(maxim.제품명);
+        console.log(maxim['원재료명']);
+        console.log(maxim.try());
+        console.log(maxim['info']());
+
+        // String 생성자 함수를 사용해서 객체 생성
+        let strObj = new String("hello");
+        console.log (strObj[0]); //h
+
+        console.log("객체의 key정보를 배열로 반환 => ",Object.keys(strObj));
+        console.log("객체의 value정보를 배열로 반환 => ",Object.values(strObj));
+        console.log("객체의 key/value정보를 배열로 반환 => ",Object.entries(strObj));
+
+        // 객체 생성하기 3 - 직접 생성자 함수 정의 후 객체를 생성하는 방식
+        // 생성자 함수는 대문자로 생성
+        let CustomObj = function(name,age) {
+            this.name = name;
+            this.age = age;
+            this['팬클럽'] = "유애나";
+            this.hello = function(){
+                return "안녕하세요" + this.name+"입니다.";
+            }
+        }
+        // 객체 생성
+        let customObj = new CustomObj('IU',30);
+        console.log(customObj);
+        console.log(customObj.age);
+        console.log(customObj.hello());
+
+        // 동적으로 속성 추가
+        customObj.hitSong = "좋은 날";
+        console.log("히트곡은 "+ customObj.hitSong);
+
+        // 동적으로 메서드 추가
+        customObj.info = function() {
+            return "나이는 : "+ this.age;+" 팬클럽은 "+this.팬클럽;
+        }
+        console.log("정보 => "+customObj.info());
+
+        // 속성, 메서드 삭제 => delete 키워드 사용
+        delete customObj.hitSong;
+        delete customObj.hello;
+        console.log("히트곡은 "+ customObj.hitSong);
+        console.log(customObj.hello);
+    </script>
+
+</body>
+</html>

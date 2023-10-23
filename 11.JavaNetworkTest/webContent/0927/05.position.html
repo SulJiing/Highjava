@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        /* padding: 0;
+        margin: 0; */
+    }
+    #container {
+        position: relative; /*absolute의 부모자격조건을 설정함*/
+        border-style: solid;
+        height: 250px;
+        width: 50%;
+        top: 100px;
+        left: 100px;
+    }
+    .child {
+        width: 50px;
+        height: 50px;
+        border: 4px solid brown;
+        border-radius: 25px;
+        text-align: center;
+        /* static한 상태에서는 방향속성(top,left,right,bottom) 값에 적용을 받지 않음 */
+         /* position: static; default */
+         position: relative; /*relative => static한 위치로부터 적용한 방향속성의 위치로 이동함*/
+         /* absolute => 부모를 기준으로 적용한 방향속성의 위치로 이동 
+            부모1 - 기본, 창(window, 브라우저)의 좌측 상단을 기준으로 함
+            부모2 - 물리적으로도(계층구조상) 부모여야 하며, 
+                    부모의 조건으로는 position 속성 중 static을 제외한 하나의 속성을 가져야 함
+        */
+        /* position: absolute; */
+        /* position: fixed; */
+    }
+    .m {
+        background-color: tomato;
+        /* left: 20px; */
+        /* top: 1000px; */
+    }
+    .d {
+        background-color: orange;
+        /* left: 40px; */
+    }
+    .s {
+        background-color: yellow;
+        /* left: 60px; */
+    }
+    .g {
+        background-color: greenyellow;
+        /* left: 80px; */
+    }
+    [value="move"] {
+        position: relative;
+        top: 100px;
+        left: 100px;
+    }
+</style>
+<body>
+    <div id="container">
+        <div class="child m">마지</div>
+        <div class="child d" style="z-index: -1;">두리</div>
+        <div class="child s">세찌</div>
+        <div class="child g">꽁지</div>
+    </div>
+    <input type="button" value="move" onclick="f_move()">
+
+<script>
+    // 이동효과를 줄 대상 선정 => 나는 마지로 선택하겠어
+    // var magi = document.querySelectorAll('.child')[0];
+    var magi = document.querySelector('.m');
+    // console.log(magi);
+    function f_move(){
+        // 선택한 대상에 움직임을 줍시다.
+        console.log("당연히 아무것도 없쥬",magi.style.left);
+
+        // 자바스크립트의 조건문에는 boolean타입이 아닌 다른 타입의 정보를 넣어 사용할 수 있다.
+        // 문자 .. 숫자를 조건으로 넣어도 자동 형변환 해서 활용함
+        // if(문자열) => true로 인식 / 값이 없을 때 false로 인식
+        // if(숫자열) => 0을 제외한 모든 수(음수포함) true로 인식
+
+        // 요소를 대상으로 인라인 설정정보를 초기화 진행
+        if(!magi.style.left){
+            magi.style.left = "0px"; // 요소에 left속성 초기화
+        }
+        
+        console.log("이젠 설정값 존재",magi.style.left);
+
+        //parseInt()를 활용해 문자열 단위를 제외한 순수한 숫자만 반환하여 연산을 진행
+        // 최종값 대입시 'px' 단위를 붙여야 함
+        magi.style.left = parseInt(magi.style.left) + 5 + "px";
+    }
+</script>
+</body>
+</html>

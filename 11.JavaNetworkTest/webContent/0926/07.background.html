@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            height: 100vh; /* viewheight : 보여지는 영역의 100%를 제공 */
+        }
+        [id*=content]{
+            background-color: aqua;
+            width: 90%;
+            height: 90%;
+            border: 12px gold;
+        }
+        #content{
+            /* 각 속성 부여하기 */
+            width: 99%;
+            height: 99%; /* 부모가 없을 경우 %단위 사용불가 */
+            background-color: rgb(100,150,201);
+            background-image: url(../imeage/aaaaa.jpg);
+            background-size: 50%;
+            background-repeat: no-repeat;
+            background-clip: border-box; /* bg-color의 범위지정 */
+            background-origin: border-box; /* bg-img의 범위지정 */
+            /* background-position: right bottom; */
+            border: 10px dashed beige;
+            padding: 20px ;
+        }
+
+        #content1 {
+            /* 축약 color image position/size repeat origin clip attachment 
+              - 순서 변경 가능, 항목 생략 가능
+              - siz는 position 뒤에 슬래시 표기 후 배치할 것
+                position과 size는 일부 값의 단위를 공유하므로 반드시 슬래시로 구분!
+                position은 단독 사용 가능, size는 posiotion과 같이 설정해야 함!
+              - oringin 다음 clip에 배치할 것
+            */
+            width: 99%;
+            height: 99%;
+            border: 10px dashed beige;
+            background: gold url(../imeage/img/panda.jpg) 0%/*center, px도 가능*/ 0%/80% no-repeat 
+            border-box content-box;
+        }
+
+        #content2 {
+            /* 하나의 여역에 여러 배경이미지 삽입 */
+            /* 먼저 작성된 이미지가 상위 프레임 */
+            background : url(../imeage/) left top/30% repeat-x,
+                         url(../imeage/aaaaa.jpg) right top/30% repeat-y;
+        }
+
+        #content3 {
+            /* 투명 배경 */
+            /* background : black url(../imeage/img/oct.jpg) center center/cover no-repeat; */
+            /* opacity: 0.2; 자식요소에 투명도 상속 */
+        }
+
+        #content3::before{
+            /* 해당영역에 가상의 요소를 하나 만들어서 활용 */
+            background : black url(../imeage/hqdefault.jpg) center center/cover no-repeat;
+            opacity: 0.2;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        span{
+            /* 원래 요소는 static(정적, 움직이지 않는)상태 */
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- 요소들을 감싸는 가장 상위요소에 보통 container 또는 wrapper라는 id명을 부여함 -->
+    <div id="container">
+        <div id="content3">
+            <span>입력된 내용은 투명처리하고 싶지 않아요....</span>
+        </div>
+    </div>
+</body>
+</html>

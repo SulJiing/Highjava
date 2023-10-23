@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 자바스크립트에서 중요한 키워드 funtion
+
+    // 선언식 함수(기명함수 declare funtion)
+    // funtion 함수명(){} - 브라우저 런타임(로딩) 이전에 선언됨
+    function f_fnc() {
+        alert("선언식!!");
+    }
+    f_fnc(); // 함수호출
+
+    // 표현식 함수(익명함수 expression funtion)
+    // let 변수명 = funtion(){}; - 브라우저 런타임(로딩)에 동적으로 선언됨
+    // 변수에 함수를 값처럼 대입하고 변수이름을 통해 함수를 호출함
+    let f_fnc1 = function() {
+    // var f_fnc1 = function() { let은 재정의 안됨 var는 됨
+        alert("표현식~~");
+    }
+    f_fnc1(); // 변수호출
+    // f_fnc(); // 함수호출 => 표현식만 불리는 이유 : 선언시점에 표현식이 오버라이딩되어 출력됨
+
+    // 화살표 함수(arrow funtion)
+
+    // 매개변수가 없을 때 반드시 소괄호 작성하기
+    // 실행문 내용이 한줄 일 때 중괄호 생략가능
+    // let 변수명 = () => {};
+    let f_arrow1 = (a,b,c) => alert("화살표함수 1"+a+b+c);
+    f_arrow1();
+    f_arrow1('a','비','C');
+
+    // 매개변수가 한개일 때는 소괄호 생략 가능
+    // let 변수명 = param => {};
+    let f_arrow2 = param => alert(param+"  => 화살표함수 2");
+    f_arrow2('다락방');
+
+    // 즉시실행함수 - 로딩 직후 1회만 실행하기 때문에 이름이 필요없음
+    // 전역을 오염시키지 않음 => 코드 충돌을 방지
+    // 외부에서 접근이 불가함 => 데이터 보호
+    // 지역변수로 활용되므로 함수 실행 후 제거되어 자원에 낭비가 없음
+    (function(){alert("IIFE")})();
+
+    let v_init = "";
+    (function(param){
+        let v_once = ['초기화O', '초기화X'];
+        if(param) {
+            v_init = v_once[0];
+            return;
+        }
+        v_init = v_once[1];
+    })(confirm("초기화 할래??"))
+    console.log(v_init);
+    </script>
+</body>
+</html>

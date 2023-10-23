@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body *{
+            border: 1px solid lightgray;
+            margin: 10px;
+        }
+        /* 자식요소 - ('>') */
+        /* ('>') 기호 앞뒤 공백은 무의미 */
+        #parent>div{
+            border-color: navy;
+        }
+        /* 자손(자식포함)요소 - (' ') */
+        #parent div{
+            color: pink;
+        }
+        /* 선택자 바로 다음 형제요소 - ('+') */
+        #second+div{
+            /* text-shadow: x축 y축 blur color; */
+            text-shadow: 2px 2px 1px red;
+        }
+        /* 선택자 바로 다음 모든 형제요소 - ('~') */
+        #first~div{
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+    <!-- 들여쓰기로 요소간 계층구조를 한눈에 파악 -->
+    <div id="parent">
+        <div id="first">자식1</div>
+        <div id="second">자식2
+            <div>후손1</div>
+            <div>후손2</div>
+            <div>후손3</div>
+    </div>
+    <div>자식3</div>
+    <p>자식4</p>
+    <div>자식5</div>
+</body>
+</html>

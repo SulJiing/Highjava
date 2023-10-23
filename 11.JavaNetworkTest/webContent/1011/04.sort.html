@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* sort() - callback함수없이 사용하는 sort(fnc)는 많이 사용하지 않음
+
+    callback 함수 :
+        뒤에 불리는 함수
+        표현식/화살표함수 형태로 선언
+        다른 함수의 인자로 사용되면 나중에 호출되는 함수
+        호출방식에 의한 표현으로 특별함/특징은 없
+        * (비동기로 작성된 함수를 동기처리하기 위한 방법론)
+*/
+
+    let v_numArr = [12,100,230,32,300,24,515];
+
+    v_numArr.sort(function(a,b) {
+        // console.log("a매개변수:", a, "| b매개변수:", b, " => a-b:",a-b);
+        console.log("a매개변수:", a, "| b매개변수:", b, " => b-a:",b-a);
+        // return a-b; //오름차순
+        return b-a; //내림차순
+    });
+    console.log(v_numArr);
+
+    let v_strArr = ["가영", "라영", "다영", "나영", "하영"];
+    console.log(parseInt("가영")); // 정수형 변환 및 문자를 제거한 숫자만 반환해줌
+    console.log(Number("가영")); // 원시타입인 number를 Number객체로 변환해주는 래퍼클래스
+
+    console.log("가영"-"라영");
+    // 빼기연산자 => 문자열을 숫자로 변환할 수 없으므로 처리 불가함
+    // 비교연산자 => 문자열을 내부적으로 유니코드로 변환하여 비교함
+
+    // String객체에 "문자".charCodeAt() => 유니코드로 변환
+    v_strArr.sort(function(a,b){
+        if(a>=b){ // 오름차순 정의
+        // if(a<=b){ // 내림차순 정의
+            return 1;
+        } else {
+            return -1; // 음수값을 반환할 때 자리변경이 이루어짐
+        }
+    });
+    console.log(v_strArr);
+
+    </script>
+</body>
+</html>

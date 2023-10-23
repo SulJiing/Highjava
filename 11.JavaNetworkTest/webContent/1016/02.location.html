@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://daum.net">DAUM</a>
+    <input type="button" value="reload_replace">
+
+    <script>
+        // 스타일, 스크립트, 이벤트 모두 우선순위는 인라인이 가지고 있음
+        document.querySelector('a').addEventListener('click',function(e){
+            e.preventDefault(); // 이벤트 대상 요소의 기본기능을 중지시킴
+            // location.href = "http://naver.com"; // 전체 url주소 세팅
+            location.assign('http://google.com'); // 지정된 경로로 이동(= href와 동일한 기능)
+        });
+
+        document.querySelector('input').addEventListener('click',function(){
+
+            // 현재 문서의 주소표시줄 정보 읽음
+            console.log(location.href); // 최상위 객체(window) 생략
+            console.log(window.location.href); // 대부분 window 하위 location객체의 href활용
+            console.log(document.location.href,"은 document.URL로 변경 => ", document.URL);
+
+            // reload() - 새로고침 효과, 특별한 상황이 아니면 권장하지 않음
+            // location.reload();
+
+            // replace() - 현재 문서(A)를 새문서(B)로 대체 => 페이지 변경으로 이전 페이지 이동 불가
+            // location.replace(location.href); // 새로고침
+            // location.assign("http://naver.com"); // 이전 페이지로 이동
+            location.replace("http://naver.com"); // 이전 페이지로 이동 불가
+
+            /*
+            href(assign) vs replace
+            href - 페이지 이동으로 이전 페이지로도 이동가능
+                    history에 기록되므로 캐시된 페이지를 보여주거나 서버로 요청
+                    
+            repalce - 페이지 변경으로 이전 페이지로 이동 불가
+                    history에 기록되지 않으며 항상 서버로 페이지를 요청하는 구조
+            */
+        });
+
+    </script>
+</body>
+</html>

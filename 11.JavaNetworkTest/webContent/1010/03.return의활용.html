@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let v_return = "";
+
+        function f_rtn(p_arg) {
+            if(p_arg) {
+                v_return = "TRUE";
+                return; // 함수종료
+            } 
+                v_return = "FALSE";
+            }
+        f_rtn("");
+        console.log(v_return);
+
+    </script>
+</body>
+</html>

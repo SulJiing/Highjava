@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script src="../js/random.js"></script>
+<script>
+/*  Math - 수학적인 상수와 함수를 위한 속성,메소드를 가진 내장 객체
+    static으로 미리 만들어져 있어 new를 사용하지 않음
+    
+    random() - 0부터 1미만의 *난수를 발생시키는 메소드
+    *난수 - 정의된 범위 내에서 무작위로 추출된 수
+    0.0 <= Math.random() < 1
+*/
+    // console.log( Math.random() ); // 0~1미만의 실수
+    // console.log( parseInt(Math.random()) ); //무조건 0
+    // console.log( Math.floor(Math.random()) ); //무조건 0
+    // console.log( Math.ceil(Math.random()) ); //무조건 1
+    // console.log( Math.round(Math.random()) ); //0 또는 1
+    // console.log( Math.random().toFixed() ); //0 또는 1
+
+    // 0 ~ 1 미만의 난수
+    //난수 발생 0.39    0.96    0.57    0.41    0.35    0.09
+    // *10      3.9     9.6     5.7     4.1     3.5     0.9
+    // ceil()    4      10      6       5       4       1   
+    // floor()   3      9       5       4       3       0
+
+    console.log("ceil[1~10]", Math.ceil(Math.random()*10) );
+    
+    console.log("floor[0~9]", Math.floor(Math.random()*10) );
+    
+    console.log("floor[0~10]", Math.floor(Math.random()*11) );
+    
+    // 4~9 까지 난수 발생
+    console.log("floor[4~9]", Math.floor(Math.random()*6)+4 );
+    
+    // 문제) 65 ~ 100까지 난수 발생
+    console.log("floor[65~100]", Math.floor(Math.random()*36)+65 );
+    console.log("ceil[65~100]", Math.ceil(Math.random()*36)+64 );
+    
+    console.log( f_random(5, 10) );
+    
+</script>
+</body>
+

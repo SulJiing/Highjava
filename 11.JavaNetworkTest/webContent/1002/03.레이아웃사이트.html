@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<!-- 외부스타일시트 가져오기 -->
+<link rel="stylesheet" href="../css/reset.css">
+<!-- 파비콘 등록하기 -->
+<link rel="icon" href="../images/ddit.JPG">
+<style>
+body * {
+  /* border-style: solid; */
+  box-sizing: border-box;
+}
+/* #header { */
+header {
+  border: 3px solid red;
+  height: 20vh;
+}
+/* #nav { */
+nav {
+  border: 3px solid green;
+  height: 70vh;
+  width: 30%;
+  float: left;
+}
+/* #main { */
+main {
+  border: 3px solid yellow;
+  height: 70vh;
+  width: 70%;
+  background-color: orange;
+  float: left;
+}
+/* #footer { */
+footer {
+  border: 3px solid purple;
+  height: 10vh;
+  clear: left;
+}
+</style>
+</head>
+<body>
+    <!-- <div id="header">머릿글</div>
+    <div id="nav">네비게이션</div>
+    <div id="main">메인</div>
+    <div id="footer">바닥글</div> -->
+
+    <!-- 시맨틱 요소로 변경 -->
+    <header>머릿글</header>
+    <nav>네비게이션</nav>
+    <main id="main">메인</main>
+    <footer>바닥글</footer>
+</body>
+</html>

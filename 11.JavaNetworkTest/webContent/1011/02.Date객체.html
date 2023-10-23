@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("국제표준시 => ",new Date());
+        // 가독성 있는 날짜 정보 제공 메서드
+        console.log("1 => ",new Date().toLocaleString());
+        console.log("2 => ",new Date().toLocaleDateString());
+        console.log("3 => ",new Date().toLocaleTimeString());
+
+        // 1970. 1. 1. 오전 9:00:00 기준 + millisecons가 더해진 날짜 반환
+        console.log("4 => ",new Date(13000).toLocaleString());
+        
+        console.log("5 => ",new Date("2023.10.11").toLocaleString());
+        
+        // new Date(year, month(0월부터), [date, hour, min, sec, ms]) - year과 month는 필수
+        // month는 0부터 정보를 제공함 - get(+1) / set(-1)
+        console.log("6 => ",new Date(2023, 10-1, 11, 13, 33, 45, 1000).toLocaleString());
+
+        // getTime(지정한 날짜) - 기준일(1970.1.1)부터 지정날짜까지 경과된 시간을 ms단위로 반환 
+        let today = new Date();
+        todayMs = today.getTime();
+        console.log("7 => ",todayMs/1000/60/60/24/365+"년 경과");
+        console.log("8 => ",Math.ceil(today/1000/60/60/24/365)+"년 경과");
+        console.log("9 => ",Math.floor(today/1000/60/60/24/365)+"년 경과");
+        console.log("10 => ",(today/1000/60/60/24/365).toFixed(2)+"년 경과");
+
+        // getFullYear() - 4자리 연도 정보 반환
+        console.log("11 => ",today.getFullYear());
+        
+        // getYear() - 1900년대를 대상으로 2자리 연도 정보를 제공하므로 표준에서 제외됨
+        console.log("12 => ",new Date("1999.12.31").getYear());
+        
+ </script>
+</body>
+</html>

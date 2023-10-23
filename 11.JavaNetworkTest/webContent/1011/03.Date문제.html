@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+    <h4><a href="javascript:f_after500day()">500일 후 날짜</a></h4>
+    <h4><a href="javascript:f_suryo()">수료까지 남은 일자(D-DAY)</a></h4>
+    <h4><a href="javascript:f_anniv()">월드컵이후 지나온 날짜(D+DAY)</a></h4>
+    <h4>
+        <a href="javascript:f_refund()">교환 가능일 계산</a>
+        <input type="date" id="calendar">
+    </h4>
+
+    <script>
+         // 오늘까지의 경과시간 구하기
+         let today = new Date();
+
+        // 환불 가능일 계산
+        let f_refund = function () {
+            
+            // 구매날짜 정보 가져오기
+            let calendar = document.querySelector('#calendar');
+
+            // 날짜 정보 null체크
+            if(calendar.value == "") {
+                alert("날짜를 선택하십시오.");
+                return; // 함수 종료
+            }
+
+            let buyDate = new Date(calendar.value);
+            console.log(buyDate.toLocaleString());
+            let buyMs = buyDate.getTime(); // 구매일까지의 경과시간
+            let todayMs = today.getTime(); // 오늘까지의 경과시간
+
+            let ms = todayMs - buyMs;
+            let dd = ms/1000/60/60/24;
+            dd = parseInt(dd);
+            console.log(parseInt(dd));
+
+            // 구매일로부터 7일 경과시
+            if(dd > 7) {
+                alert("환불기간인 지났습니다.");
+            } else if (dd < 0) {
+                alert("잘못된 날짜 입력입니다.\n오늘 날짜 => "+today.toLocaleDateString());
+            } else {
+                alert("환불이 가능합니다.");
+            }
+            calendar.value = ""; // 선택된 값 초기화
+        };
+
+        // 지나온 기간 계산
+        let f_anniv = function () {
+            let worldCup = new Date("2002.5.31"); // 1970~2002월드컵까지 경과시간
+            let wcMs = worldCup.getTime(); // 월드컵까지의 경과시간
+            let todayMs = today.getTime(); // 오늘까지의 경과시간
+            
+            let ms = todayMs - wcMs;
+            ms = ms / 1000 / 60 / 60 / 24 / 365;
+
+            // 출력결과 작성
+            let result = "2002년 월드컵 "+Math.floor(ms)+"년 경과";
+            // 화면에 출력 => insertAdjacentHTML(position, value)
+            document.querySelector('body').insertAdjacentHTML('beforeend',result);
+        };
+        let f_suryo = function () {
+            let suryo = new Date("2024.4.2");
+            let suryoMs = suryo.getTime(); // 1970~수료일까지의 경과시간 ms
+            let todayMs = today.getTime(); // 1970~오늘까지의 경과시간 ms
+
+            let ms = suryoMs - todayMs;
+            let dd = ms / 1000 / 60 / 60 / 24; // 계산된 일자정보
+
+            // 출력코드
+            let result = "<br>" + "수료일 : " + suryo.toLocaleDateString() + "<br>";
+            result += "오늘 날짜 : " + today.toLocaleDateString() + "<br>";
+            result += "남은 일자 D-" + dd.toFixed() + "일";
+
+            document.querySelector('body').innerHTML += result;
+        
+        };
+        let f_after500day = function(){
+
+            let todayMs = today.getTime();
+            // 500일에 대한 ms구하기
+            let day500Ms = 1000 * 60 * 60 * 24 * 500;
+
+            let after500 = new Date(todayMs + day500Ms); // 기준일 이후로 더해진 ms날짜 정보 반환
+            // 일자로 표현하기
+            console.log(after500.toLocaleDateString()+"일");
+        };
+    </script>
+</body>
+</html>

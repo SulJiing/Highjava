@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        img {
+            width: 70px;
+            height: 70px;
+        }
+        #parent {
+            border: 5px double gray;
+            width: 70px;
+            height: 70px;
+            position: relative; /* absolute의 부모자격을 가짐 */
+            top: 100px;
+            left: 100px;
+            overflow: hidden;
+        }
+        .child {
+            width: 420px;
+            font-size: 0;
+            position: absolute;
+        }
+        button {
+            position: relative;
+            top: -10px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div class = "child"> 입력하는 텍스트 정보
+            <img src="../imeage/아하기싫어.jfif" alt="">
+            <img src="../imeage/som1.jpg" alt="">
+            <img src="../imeage/som2.jpg" alt="">
+            <img src="../imeage/som3.jpg" alt="">
+            <img src="../imeage/som4.jpg" alt="">
+            <img src="../imeage/som5.jfif" alt="">
+        </div>
+        <div class = "child">
+            <img src="../imeage/인내심의한계를경험중.jfif" alt="">
+            <img src="../imeage/bara1.jpg" alt="">
+            <img src="../imeage/bara2.jpg" alt="">
+            <img src="../imeage/som6.jfif" alt="">
+            <img src="../imeage/somin.jfif" alt="">
+            <img src="../imeage/ala.jpg" alt="">
+        </div>
+    </div>
+    <button onclick="f_str()">출발</button>
+    <script>
+       let v_child = document.querySelectorAll('.child'); //유사배열
+        // 두번째 이미지 블럭의 위치 초기화 진행
+       if(!v_child[1].style.left) {
+        v_child[0].style.left = "0px";
+        v_child[1].style.left = "420px";
+       }
+    function f_str() {
+
+        // 반복(loop)처리
+        if(parseInt(v_child[0].style.left) == -420)  v_child[0].style.left ="420px"
+        if(parseInt(v_child[1].style.left) == -420)  v_child[1].style.left ="420px"
+
+        // 이미지블력 왼쪽으로 이동처리
+        v_child[0].style.left = parseInt( v_child[0].style.left)-70+"px"
+        v_child[1].style.left = parseInt( v_child[1].style.left)-70+"px"
+
+        // setTimeout(f_str, 1000);
+    }
+    </script>
+</body>
+</html>

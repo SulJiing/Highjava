@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 방식1. 이벤트 속성을 요소에 삽입하는 방식 / 보통 테스트코드용으로 많이 활용 -->
+    <button onclick="alert('까꿍')">인라인방식</button>
+    <button>이벤트 핸들러</button>
+    <button>이벤트 리스너</button>
+
+    <script>
+        let v_btns1 = document.getElementsByTagName('button'); // 유사배열
+        let v_btns2 = document.querySelectorAll('button'); // 유사배열
+        console.log(v_btns1[1], v_btns2[2]);
+
+        /*방식2. onclick - 사건(event)과 그에 대한 동작을 핸들러라고 함
+                => 같은 요소를 대상으로 이벤트 부여시 가장 마지막 항목만 실행(=하나의 이벤트만 실행)
+
+            웹 문서에서 이벤트 발생시 실행될 함수를 웹 브라우저에 알려야 함
+            이때 이벤트와 처리함수를 연결하는 것을 '이벤트 처리기' 또는 '이벤트 핸들러'라 함
+            이벤트 처리기(=이벤트 핸들러)는 이벤트 앞에 on을 붙여 사용한다
+        */
+        v_btns1[1].onclick = function(){
+            alert("onclick이벤트111");
+        }
+        let v_count = 0;
+        v_btns1[1].onclick = function(){
+            alert("onclick이벤트222");
+            v_count++;
+            console.log(v_count);
+
+            // 함수 안에서 사용시 여러번 실행되는 형태를 주의해서 사용해야 함
+            v_btns2[2].addEventListener('click',function(){
+                alert(v_count + "번 실행됨 주의");
+            });
+        }
+
+        /* 방식3. addEventListener - 이벤트 감지 시 인자로 받은 함수를 실행
+                => 같은 요소에 복수의 이벤트 처리가능(=이벤트 큐에 순차적으로 쌓아놓고 모두 실행)
+        */
+       let a;
+       v_btns2[2].addEventListener('click',a=function(){
+        alert("111!!");
+       });
+       v_btns2[2].addEventListener('click',b);
+       function b(){
+        alert("222!!");
+       }
+
+        //addEventListener로 추가된 이벤트를 제거하는 removeEventListener
+       v_btns2[2].removeEventListener('click',a); // 함수를 담은 변수 대상으로 제거
+       v_btns2[2].removeEventListener('click',b); // 함수 대상으로 제거
+
+
+    </script>
+</body>
+</html>

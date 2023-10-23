@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script>
+    // 주석 제외한 최상단에 입력해서 제기능을 발휘
+    "use strict"; // 엄격모드로 스크립트를 작성해서 가장 현대적인 표준 방식의 가이드를 제안하는 모드
+    var v_myName = "내 이름"; // 전역변수(함수바깥)
+    function f_fnc() {
+        var sum = [];
+        for(let i=0; i<10; i++){
+            sum.push(i);
+            
+        }
+        // alert("1"+v_myName);
+        console.log(sum);
+        // console.log(i); // var, let의 유효범위에 따른 결과 차이발생
+        // alert("2"+v_myName);
+        v_myName2 = "내 이름2"; // 지역변수 단, var키워드를 제거하면 전역화되어 사용이 가능함
+        // alert("3"+v_myName2);
+    }
+    f_fnc(); // 함수 호출
+    alert("4"+v_myName2); // 참조 에러 발생 - 지역변수에 접근불가 단, 위 변수에서 var 생략하면 가능
+</script>
+</head>
+<body>
+    <!--
+    변수 키워드 3종
+    var
+        함수 범위에서 유효
+        재선언, 재할당 가능 => 개발자 간 오류 발생 가능성이 높아지므로 사용을 지양
+
+        - 변수 선언 키워드 생략 허용 => 의도치 않은 변수의 전역화를 발생시킴
+        - 중복 선언 허용 => 의도치 않은 값 변경 발생
+        - 변수 호이스팅 적용됨 => 변수 선언 이전에서 참조 가능하게 만드는 비정상적 코드 발생
+        
+        위와 같은 상황으로 개발자간 혼란을 야기하며 코드 복잡도를 높이게 되어,
+        보완을 위한 키워드가 ES6에 도입되었음
+
+    let 
+        블록 범위에서 유효
+        재선언 불가 => 사용중인 변수에 다른 값을 할당하여 발생될 예외를 미리 차단
+        재할당만 가능
+    
+    const
+        블록 범위에서 유효
+        재선언 재할당 불가능므로 선언시 반드시 값이 할당되어야 함(=초기화 진행하지 않으면 에러 발생)
+        보통 대문자를 사용해서 선언하지만 강제는 아님
+
+        변하지 않는 값(상수)을 가진 변수를 생성(=읽기전용 변수)
+        * 참조타입(Array, Object, Function)에 사용 추천
+        => 참조타입은 주소를 참조하기 때문에 값 변경가능
+    -->
+    <script>
+        const PTYPE = "기본형";
+        const RTYPE1 = ["참","조","형"];
+        const RTYPE2 = {O:"오",'b':"브","ject":'젝'};
+        const RTYPE3 = function(param){
+            if(param) {
+                return "전달된 값: "+param;
+            }
+            return "전달된 값 없음";
+        }
+        // PTYPE = "값을 재할당"; // Assignment to constant variable. => 상수변수에 할당 => 불가함
+        RTYPE1[1] = "ZO";
+        RTYPE2.ject = "JECT";
+        console.log(RTYPE1,RTYPE2,RTYPE3('ㅎㅎㅎ'));
+    </script>
+</body>
+</html>

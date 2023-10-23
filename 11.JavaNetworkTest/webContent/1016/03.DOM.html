@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border: 2px solid blue;
+}
+</style>
+</head>
+<body>
+<pre>
+  DOM(Document Object Model, 문서 객체 모델)
+  - 브라우저가 웹 문서를 이해하도록 구성된 문서 객체 모델
+  - Document와 관련된 객체들의 집합
+  - 프로그래밍 언어가 DOM구조에 접근할 수 있는 방법 제공 >> 구조, 스타일, 내용 변경 가능
+  - 브라우저는 웹 문서의 요소들을 객체화하고 구조화하여 상/하위 또는 병렬구조로 체계화 함(=트리구조, 부자관계 형성)
+
+  [DOM Tree 구조]
+  ★Document(문서 노드, 9): 문서 전체를 나타내는 트리 최상단, 하위로 접근하기 위한 시작점
+  ㄴDocumentType, 10
+  ㄴ★Element(요소 노드, 1): 각종 태그들
+    ㄴ★Attribute(속성 노드, 2)
+    ㄴEntity, 6
+    ㄴEntityReference, 5
+    ㄴ★Text(텍스트 노드, 3): 요소 노드의 자식이자 최종단
+  ㄴComment(주석 노드, 8)
+  ㄴCDATASection, 4
+  ㄴNotation, 7
+</pre>   
+    <div id="id_div" class="cls_div">
+        <span>디브안에 스팬1</span>
+        <span>디브안에 스팬2</span>
+        <span>디브안에 스팬3</span>
+    </div>
+<pre>
+  [Node간 관계 종류] 
+  - node대상 속성 (elementNode대상 속성)
+  - parentNode(parentElement) 
+  - childNodes(children)
+  - firstChild(firstElementChild)
+  - lastChild(lastElementChild)
+  - nextSibling(nextElementSibling)
+  - previousSibling(previousElementSibling)
+</pre>
+<script>
+let v_parent = document.getElementById('id_div');
+let v_child = document.getElementsByTagName('span');
+console.log("첫번째 자식노드 기준으로 부모 노드 찾음>>", v_child[0].parentNode );
+console.log("부모에서 자식노드들 찾음>>", v_parent.childNodes ); //7자식노드
+console.log("부모에서 자식노드들 찾음>>", v_parent.children ); //3자식노드
+
+console.log(v_parent.childNodes[0]); //text노드
+console.log(v_parent.firstChild); //text노드
+console.log(v_parent.firstElementChild); //디브안에 스팬1의 span
+
+console.log( v_child[1].nextSibling ); ///디브안에 스팬1 다음형제요소 (textnode)반환
+console.log( v_child[1].nextElementSibling ); //디브안에 스팬3
+</script>
+
+<pre>
+  [Node정보]
+  - nodeName => 노드 고유의 이름 / 읽기전용 속성(get만 가능, set은 불가)
+  - nodeValue => 노드의 값 - text를 자식으로 갖는 textNode까지 접근 후 사용해야 함
+  - nodeType => 노드 교유의 타입을 정수형태로 반환 / 읽기전용 속성
+</pre>
+<script>
+  console.log(v_parent.nodeName, v_parent.nodeValue);
+  console.log(v_parent.childNodes[1].firstChild.nodeValue); // index 0번째는 공백(textNode)
+  console.log(v_parent.children[0].firstChild.nodeValue); // index 0번째는 공백(textNode)
+  console.log(v_parent.children[0].firstChild.nodeType); // 3
+  console.log(v_parent.children[0].nodeType); // 1
+  v_parent.children[0].firstChild.textContent = "바꿔치기112"; // nodeValue대신 textContent로 대체가능
+</script>
+
+<pre>
+  [Node생성]
+  - createElement()
+  - createAttribute()
+  - createTextNode()
+
+  - append() - node대상과 DOMString(문자열 요소, 파싱되지 않고 문자 자체로 표현) 둘다 추가
+  - appendChild() - node대상으로만 추가, 대상요소의 마지막에 추가
+  - insertBefore(node,삽입할 위치) - 삽입위치를 null로 지정할 경우 appendChild와 동일(마지막에 추가)
+  - insertDate(offset, data) - 텍스트 노드의 offset(default 0, 삽입위치)에 새 텍스트 추가
+
+  [Node삭제, 복사]
+  - removechild()
+  - remove
+  - cloneNode()
+</pre>
+<script>
+  let tagP = document.createElement('p'); // <p></p>
+  console.log(tagP);
+
+  let addAttr = document.createAttribute('title');
+  addAttr.value = "타이틀속성추가함";
+  tagP.setAttributeNode(addAttr);
+
+  let addTxt = document.createTextNode("내용 content추가");
+  // tagP.appendChild(addTxt); // 노드대상은 append(), appendChild() 둘다 가능
+  // tagp.appendChild("내용추가가 될까??"); // x
+
+  console.log(tagP);
+
+  // v_parent.append(tagP);
+  // v_parent.appendChild("<p title='문자열로 요소 생성'>1111</p>"); // 에러발생
+  v_parent.append("<p title='문자열로 요소 생성'>1111</p>"); // 파싱되지 않고 문자 자체로 추가됨
+  // v_parent.insertBefore(tagP,null); // null일때는 대상요소 마지막에 배치
+  // v_parent.insertBefore(tagP,v_child[0]); // 삽입위치 앞쪽에 배치
+
+  console.log(v_child[0].firstChild.nodeValue); // 바꿔치기112
+  v_child[0].firstChild.insertData(6,"----"); // offset은 한글자 기준 왼쪽 커서 위치
+
+  // 노드삭제
+  v_parent.removeChild(v_child[1]);
+  v_child[0].remove();
+
+  // 노드복제
+  let v_clone = v_parent.cloneNode(); // 자식노드 제외하고 복사(얕은복사)
+  let v_clone1 = v_parent.cloneNode(true); // true일때 자식노드까지 복사(깊은복사)
+  console.log(v_clone, v_clone1);
+
+  // document.body.appendChild(v_clone1);
+  document.body.insertBefore(v_clone,v_parent);
+  // id가 중복으로 정의되어 있을 때 가장 상위요소만 인정받음
+  document.querySelector('#id_div').style.borderColor = 'red';
+</script>
+</body>
+</html>

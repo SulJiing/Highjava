@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            border-style: solid;
+            width: 200px;
+            height: 100px;
+            background-color: yellow;
+            box-sizing: border-box; /*테두리 안쪽 여백 값을 너비 값에 포함하여 계산(바깥쪽 여백은 해당없음)*/
+            /*margin: auto;*/
+            margin: 50px;
+        }
+        #small{
+            border: 5px solid orange;
+        }
+        #large {
+            border: 15px solid green;
+        }
+        hr {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="small"></div>
+    <!-- margin collapse (요소의 맞닿는 여백이 더 큰 쪽으로 병합되는)현상을 막는 꼼수 사용 -->
+    <hr>
+    <div id="large"></div>
+</body>
+</html>

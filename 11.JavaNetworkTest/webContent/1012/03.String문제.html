@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border: 3px outset orange;
+}
+</style>
+</head>
+<body>
+    <input type="button" value="주민번호 정보 추출">
+    <input type="button" value="주민번호 유효성 검사">
+    <p>
+        1. M을 제외한 모든 자리에 2~9까지 순서대로 곱한 총 합을 구한다 <br>
+        2. 총 합을 11로 나눈 나머지를 구한다 <br>
+        3. 11에서 나머지(2번 결과)를 뺀다 <br>
+        4. 3번의 결과가 10일때 0, 11일때 1 로 변환(10이전 값은 그대로 사용) <br>
+        5. 4번의 결과와 M자리가 같으면 유효
+    </p>
+    <div>출력공간</div>
+
+<script>
+    let v_inputs = document.querySelectorAll('input'); //유사배열
+    
+    //스크립트로 이벤트 부여하기 2
+    v_inputs[1].onclick = function(){
+        //                                           234567-892345x
+        //                                           ABCDEF-GHIJKLM
+        let jumin = prompt("주민등록번호를 입력하셈", "850101-2402412");
+
+        //하이픈 제거1 - replace() 원본이 변경되지 않으므로 새변수 또는 원본변수에 꼭 대입 후 사용
+        jumin = jumin.replace("-","");
+
+        //하이픈 제거2 - split(), concat()
+        /* if(jumin.indexOf("-") != -1){
+            jumin = jumin.split("-"); //구분자 '-'로 나누어 배열로 반환
+            jumin = jumin[0].concat(jumin[1]);
+        } */
+        console.log(jumin);  
+
+        //공식1) M을 제외한 모든 자리에 2~9까지 순서대로 곱한 총 합을 구한다
+        // (A*2 + B*2 + C*3 + .... + H*9 + I*2 + ... + L*5)
+        let num = "234567892345"; // let num = [2,3,4,5,6,7,8,9,2,3,4,5];
+        let sum = 0; //총 합을 담을 공간
+
+        for(let i=0; i<jumin.length-1; i++){ //마지막자리(M)제외
+
+            if(jumin.charAt(i) == '0') continue; // 0인 값은 제외시키고 연산
+
+            //총 합 구하기 1 >> string, array정보 활용하기
+            // sum += jumin.charAt(i) * num[i]; //각 자리에 곱해준 값을 총 합 공간에 저장하기
+
+            //총 합 구하기 2 >> 공식 활용하기 (나머지 연산자를 이용해서 2~9까지 8자리가 반복되는 수 생성)
+            // console.log(i, "|", jumin[i], "|", i%8+2);
+            sum += jumin.charAt(i) * (i%8+2);
+        }
+        console.log(sum);
+        
+        //공식2) 총 합을 11로 나눈 나머지를 구한다
+        //공식3) 11에서 나머지(2번 결과)를 뺀다
+        let rst = 11 - (sum%11);
+        console.log(rst);
+        
+        //공식4) 3번의 결과가 10일때 0, 11일때 1 로 변환(10이전 값은 그대로 사용)
+        rst = rst%10;
+        
+        //공식5) 4번의 결과와 M자리가 같으면 유효
+        console.log(jumin.length); //13;
+        let last = jumin.charAt(jumin.length-1); //하이픈을 제외한 13자리 정보(0~12)
+        
+        let str = ""; //공식 5번에 대한 결과 문을 담을 변수
+        if(rst == last) str = "유효한 주민등록번호";
+        else str = "유효하지 않은 주민등록번호";
+
+        //출력 데이터 생성
+        let result = "입력한 주민등록번호: " + jumin.slice(0,6) + "-******* <br>" + str;
+        // document.querySelector('div').innerHTML = result;
+        
+        document.querySelector('div').innerHTML = ""; //공간 초기화
+        document.querySelector('div').insertAdjacentHTML('beforeend',result);
+    };
+
+    //스크립트에서 이벤트 부여 1 (정석)
+    v_inputs[0].addEventListener('click',function(){
+        
+        //prompt로 입력받은 정보에서 생일, 성별, 나이를 추출하고 화면에 출력
+        let jumin = prompt("주민등록번호 입력","830422-1432618");
+        // console.log(jumin);
+
+        //자료 추출 - index 01 - 년도 / 23 - 월 / 45 - 일 / 7 - 성별, 출생년도
+        let jmY = jumin.substring(0,2); //str, end미포함
+        let jmM = jumin.slice(2,4); //str, end미포함
+        let jmD = jumin.substr(4,2); //str, length
+        let jmG = jumin.charAt(7); //slice(7,8), substr(7,1)
+        console.log(jmY, jmM, jmD, jmG);
+
+        //출생년도
+        //1-2: 1900년대생, 3-4: 2000년대생, 5-6: 1900년대 외국인, 7-8: 2000년대 외국인
+        let yy = ""; //출생년도 앞2자리 정보 저장
+        if(jmG == "1" || jmG == "2" || jmG == "5" || jmG == "6") yy = "19";
+        if(jmG == "3" || jmG == "4" || jmG == "7" || jmG == "8") yy = "20";
+
+        //생일정보
+        let bir = yy.concat(jmY) + "년 " + jmM + "월 " + jmD + "일";
+
+        //성별정보
+        let gd = "";
+        if(jmG == "1" || jmG == "3" || jmG == "5" || jmG == "7") gd = "남자";
+        if(jmG == "2" || jmG == "4" || jmG == "6" || jmG == "8") gd = "여자";
+
+        //나이
+        let year = new Date().getFullYear();
+        let age = year - yy.concat(jmY);
+
+        //출력 결과
+        let result = "주민등록번호 : " + jumin.substring(0,8) + "****** <br>";
+        result += "생년월일: " + bir + "<br>";
+        result += "성별: " + gd + "<br>";
+        result += "나이: " + age + "살";
+
+        // document.querySelector('div').innerHTML = result; 
+        //insertAdjacentHTML()
+        document.querySelector('div').innerText = ""; //기존 내용 비우고
+        document.querySelector('div').insertAdjacentHTML('afterbegin',result); //추가
+
+    });
+</script>
+</body>
+</html>

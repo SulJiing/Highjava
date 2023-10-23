@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- 
+    팝업
+    현재 페이지가 아닌 별도의 창을 통해 정보를 제공하는 오래된 방식
+    현재 창을 중단하지 않고 추가적인 정보를 제공받기 위한 용도로 탄생되었으나,
+    현재는 ajax통신과 spa형태의 발전으로 많이 사용되지 않으며 모달 형식으로 많이 대체됨
+
+    팝업블로킹(광고성 팝업을 끝없이 띄우는 악성 공격) 등으로부터 사용자를 보호하기 위해
+    대부분의 브라우저가 자체적인 팝업 차단을 진행한다(유저에 의한 경우만 제외하고 원천 차단)
+        >> window.open() - 브라우저 자체적으로 차단함
+        >> fnc = () => {window.open()} - 팝업을 허용
+
+    * 사용자의 설정에 따라 팝업 통제가 달라질 수 있다
+-->
+    <h4>열어준 창(부모 창)</h4>
+    <textarea id="old_text" cols="40" rows="10" onkeydown="f_keydown(event)">멀티라인</textarea> <br>
+
+    <input type="button" value="새창 open">
+    <input type="button" value="새창 close">
+    <input type="button" value="보내기">
+
+<script>
+    // window.open("//naver.com"); //팝업차단
+
+    let v_btns = document.querySelectorAll('input');
+    let v_win; //변수 선언만
+
+    v_btns[0].addEventListener('click',function(){
+        //open(URL, NAME or TARGET, SPECS)
+        //1번 인자만 지정하고 2번 인자는 생략 또는 ""했을 때 팝업이 아닌 탭 형태로 페이지 열림
+        v_win = window.open("04.새창.html","erum","width=400 height=400 top=100 left=100"); //생략시 2번째 인자는 target의 기본값으로 설정(_blank)
+        //2번째 인자에 name지정시 창의 이름으로 등록되어 해당창에만 반복하여 띄움
+        // >> name이 아닐 경우 새창(새탭)을 계속 생성
+        //3번째 인자에 높이/너비 속성 지정시 브라우저에서 분리(=팝업의 형태)
+    });
+
+    v_btns[1].addEventListener('click',function(){
+        v_win.close(); //팝업 창 닫기
+    });
+
+    let f_send; // 함수를 담을 변수 공간
+    v_btns[2].addEventListener('click', f_send = function(){
+        //부모영역의 textarea value를 자식창 textarea로 출력하기
+        let oldTxtVal = window.document.querySelector('#old_text').value;
+        console.log(oldTxtVal);
+        //자식창의 textarea 영역으로 value로 넣어야 함
+        v_win.document.querySelector('#new_text').value = oldTxtVal;
+
+        // 스크롤 시 하단영역 보이기
+        v_win.document.querySelector('#new_text').scrollTop = 
+            v_win.document.querySelector('#new_text').scrollTopHeight;
+    });
+
+    function f_keydown(e) {
+        // event의 key속성 "Enter", keyCode속성 13
+        console.log("표준방식 이벤트객체",e.keyCode);
+        console.log("비표준방식 이벤트키워드",event.keyCode);
+        if(event.key == "Enter") { // event.keyCode == 13
+            // 보내기 버튼(btns[2])이 실행하는 함수를 호출해서 기능을 공유
+            f_send(); // 함수가 담겨있는 변수를 호출
+    }
+}
+</script>
+</body>
+</html>

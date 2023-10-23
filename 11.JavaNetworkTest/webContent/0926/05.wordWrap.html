@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            border-style: solid; /*뼈대를 필수로 만들고 나머지 색상(black)과 두께는 기본값으로 적용됨*/
+            width: 500px;
+            height: 300px;
+            margin-bottom: 200px; /*바깥쪽 여백(위치없으면 동서남북으로 일괄적용)*/
+            /* 가로 텍스트 제어 (한글 문자열 대상은 아님 => break-all) */
+            /* word-wrap: break-word; */
+            /*  세로 텍스트 제어, height속성 정의시에만 사용가능 */ 
+            overflow: auto;
+        }
+        #ko{
+            word-break: keep-all; /*기본값을 무시하고 영문/숫자 타입의 기본값으로 변형*/
+        }
+        #en {
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <!-- CJK 기본값 break-all(문자 기준 줄바꿈, 한문자 한문자 조각조각 나누어서) -->
+    <div id = "ko">
+        1234567891234657891231654789413564896513251648951325648965
+        우리 손 잡을까요
+        지난날은 다 잊어버리고
+        나를 사랑한다고 말해주세요
+        우리 동네에 가요
+        편한 미소를 지어 주세요
+        노란 꽃잎처럼 내 맘에
+        사뿐히 내려앉도록
+        바람결에 스쳐 갈까
+        내 마음에 심어질까
+        너에게 주고만 싶어요
+        사랑을 말하고 싶어
+        사랑해요 그대
+        있는 모습 그대로
+        너의 모든 눈물
+        닦아주고 싶어
+        어서 와요 그대
+        매일 기다려요
+        나 웃을게요 많이
+        그대를 위해 많이
+        많이 웃을게요
+        우리 손 잡을까요
+        (널 얼마나 사랑하는데)
+        오늘은 안아줘요
+        (널 얼마나 기다렸는데)
+        이제는 춤을 춰요
+        (왜 왜 자꾸 멀어지려 해)
+        우리 동네에 가요
+        (왜 왜 자꾸 놓아주려 해)
+        놓아주려 해
+        바람처럼 사라질까
+        내 마음을 채워줄까
+        나는 너를 보고 싶어요
+        너와 함께 하고 싶어
+        사랑해요 그대
+        있는 모습 그대로
+        너의 모든 시간
+        함께 하고 싶어
+        어서 와요 그대
+        같이 걸어가요
+        웃게 해줄게요
+        더 웃게 해줄게요
+        영원히
+    </div>
+    <!-- 영문/숫자 기본값 keep-all(단어 기준 줄바꿈) -->
+    <div id="en">
+        1234567891234657891231654789413564896513251648951325648965
+        Shall we hold hands
+        Forget about the past
+        Tell me you love me
+        Let's go to my neighborhood
+        Please smile comfortably
+        Like yellow petals in my heart
+        I'm going to sit down
+        Will it pass by in the wind
+        Will it be planted in my heart
+        I just want to give it to you
+        I want to tell you my love
+        I love you
+        Just as I am
+        All your tears
+        I want to wipe it for you
+        Welcome, my dear
+        I wait every day
+        I'm going to laugh Much
+        For you, a lot
+        I'll smile a lot
+        Shall we hold hands
+        (I love you so much)
+        Give me a hug today
+        (I've been waiting for you)
+        Now I dance
+        (Why do you keep trying to get away from me)
+        Let's go to my neighborhood
+        (Why do you keep trying to let go)
+        I'm going to let you go
+        Will it disappear like the wind
+        Will you fill my heart
+        I want to see you
+        I want to be with you
+        I love you
+        Just as I am
+        All your time
+        I want to be with you
+        Welcome, my dear
+        Let's walk together
+        I'll make you laugh
+        I'll make you laugh more
+        for ever
+    </div>
+</body>
+</html>

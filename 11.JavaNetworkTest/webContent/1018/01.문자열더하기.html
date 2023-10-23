@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 문자열 더하기와 중첩 for문을 이용해 테이블 요소 생성 -->
+    <input type="button" id="print99" value="구구단 출력">
+    <select id="sel99">
+        <option value="-">선택</option>
+        <option value="2">2단</option>
+        <option value="3">3단</option>
+        <option value="4">4단</option>
+        <option value="5">5단</option>
+        <option value="6">6단</option>
+        <option value="7">7단</option>
+        <option value="8">8단</option>
+        <option value="9">9단</option>
+    </select>
+    <div></div>
+    <script>
+
+        document.querySelector('#sel99').addEventListener('change', function () {
+            // select 단일 선택값은 value로 간단히 가져올 수 있음
+            // alert(this.value);
+
+            let v_tbl = "<table boder=1>";
+            v_tbl += "<tr><th>" + this.value + "</th></tr>";
+            for (let i = 1; i < 10; i++) {
+                /* 
+                    백틱(backrick, grave accent, ES6)
+                    문자열과 변수를 하나의 문자열 안에 기술하는 방식
+                    백틱을 이용해 만들어진 문자열을 '템플릿 리터럴'이라고 부름
+                    백틱 문자열 안에 변수는 '${}'기호 안쪽에 기술한다.
+                */
+                v_tbl += `<tr><td>${this.value}*${i}=${this.value*i}</td></tr>`;
+            }
+            v_tbl += "</table>";
+            // v_disp.innerHTML = v_tbl;
+            v_disp.insertAdjacentHTML('beforeend',v_tbl); // 기존 요소 뒤에 붙이기
+        });
+
+        let v_disp = document.querySelector('div');
+
+        let v_print99 = document.querySelector('#print99');
+        v_print99.addEventListener('click', function () {
+            let v_tbl = "";
+
+            // 2단부터 9단까지 테이블 반복 생성
+            for (let i = 2; i < 10; i++) {
+                v_tbl += "<table border=1>";
+                v_tbl += "<tr><th>" + i + "단</th></tr>";
+                for (let j = 1; j < 10; j++) {
+                    v_tbl += "<tr><td>" + i + "*" + j + "=" + i * j + "</td></tr>";
+                }
+                v_tbl += "</table>";
+            }
+            v_disp.innerHTML = v_tbl;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#dropArea {
+  border: 3px solid aquamarine;
+  height: 90vh;
+}
+img {
+  width: 100px;
+}
+</style>
+</head>
+<body>
+    <!-- 드래그 대상은 외부에서(내 컴퓨터)가져오기 때문에 graggable속성을 적용할 대상은 없음 -->
+    <ol id="fileList"></ol>
+    <div id="dropArea"></div>
+    
+<script>
+/* 
+    브라우저는 읽을 수 있는 파일이 오면 새 탭을 열어서 보여줌
+    dragover, drop이벤트의 기본기능을 막아서 위 기능을 해제 시킨다
+*/
+    let v_dropArea = document.querySelector('#dropArea');
+    v_dropArea.addEventListener('dragover',function(e){
+        e.preventDefault();
+    });
+    v_dropArea.addEventListener('drop',function(){
+        event.preventDefault();
+
+        //dataTransfer: 드래그 드롭에 필요한 객체
+        // console.log(event.dataTransfer.files);
+
+        //파일의 기본정보를 제공하는 File객체
+        let v_files = event.dataTransfer.files; //여러 개의 파일을 변수에 담음
+
+
+        //갯수제한하기
+        if(v_files.length > 5){
+            alert("5개까지만!");
+
+            let fileArr = Array.from(v_files);
+            // let fileArr1 = [...v_files];
+            fileArr.splice(5,v_files.length-5);
+            console.log(fileArr);
+            v_files = fileArr; //결과 참조
+        }
+
+        // for(let i=0; i<5; i++){
+        for(let i=0; i<v_files.length; i++){
+            //파일정보를 가공하고 반환받는 메소드와 속성을 제공하는 객체
+            let v_reader = new FileReader();
+            
+            //파일을 dataURL형식으로 읽어 result속성으로 반환하는 역할
+            
+            // v_reader.readAsDataURL(v_file);
+            // console.log(v_reader.result); // null, 처리 완료 전의 결과를 받았음으로 잘못된 결과를 표현
+            
+            v_reader.onload = function(){
+                // console.log("반환정보>>>", v_reader.result );
+    
+                //드롭될 파일정보를 생성해낼 ㅇㅖ정
+                let v_img = document.createElement('img');
+                v_img.src = v_reader.result;
+                v_img.alt = v_files[i].name;
+                v_img.title = v_files[i].name;
+    
+                //파일리스트 생성
+                let v_li = document.createElement('li');
+                v_li.innerText = v_files[i].name; //<li>file.jpg</li>
+
+                //출력 영역과 파일리스트 5개로 제한
+                if(v_dropArea.children.length < 5){
+                    v_dropArea.append(v_img);
+                    document.querySelector('#fileList').append(v_li);
+                } 
+            };
+            v_reader.readAsDataURL(v_files[i]);
+        }
+    });
+    
+    //dropArea 바깥 영역도 브라우저의 기능 해제
+    window.addEventListener('dragover',function(e){
+        e.preventDefault();
+    });
+    window.addEventListener('drop',function(){
+        event.preventDefault();
+    });
+
+
+    
+    
+</script>
+</body>
+</html>

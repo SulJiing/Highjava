@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table{
+            border-color: purple;
+            border-width: 2px;
+            width: 400px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <table border="">
+        <caption>테이블 연습</caption>
+        <tr>
+            <th colspan="2">1열</th>
+            <!-- <th>2열</th> -->
+            <th colspan="2">3열</th>
+            <!-- <th>4열</th> -->
+            <th>5열</th>
+            <th>6열</th>
+        </tr>
+        <tr>
+            <td colspan="4">1행1열</td>
+            <!-- <td>1행2열</td>
+            <td>1행3열</td>
+            <td>1행4열</td> -->
+            <td colspan="2">1행5열</td>
+            <!-- <td>1행6열</td> -->
+        </tr>
+        <tr>
+            <td colspan="4">2행1열</td>
+            <!-- <td>2행2열</td>
+            <td>2행3열</td>
+            <td>2행4열</td> -->
+            <td colspan="2" rowspan="2">2행5열</td>
+            <!-- <td>2행6열</td> -->
+        </tr>
+        <tr>
+            <td>3행1열</td>
+            <td>3행2열</td>
+            <td>3행3열</td>
+            <td>3행4열</td>
+            <!-- <td colspan="2">3행5열</td> -->
+            <!-- <td>3행6열</td> -->
+        </tr>
+    </table>
+</body>
+</html>

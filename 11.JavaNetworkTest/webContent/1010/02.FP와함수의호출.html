@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 함수 자체(FP)와 함수 호출
+        function f_fnc() {
+           alert ("함수 자체를 가리키는 FP");
+            return "생략가능, 생략시 호출위치로 undefined를 반환";
+        }
+        let v_return = f_fnc;
+        console.log(v_return); //함수를 담고있는 변수를 콘솔로 확인
+
+        v_return = f_fnc(); // 실행시키고 반환하는 결과를 변수에 담음
+        console.log(v_return); // 변수에 담긴 반환값을 콘솔로 확인
+
+    </script>
+</body>
+</html>

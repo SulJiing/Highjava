@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            border-style: solid;
+            width: 50%;
+            height: 50vh;
+        }
+        mark:nth-of-type(1) {
+            background-color: brown;
+        }
+        mark:nth-of-type(2) {
+            background-color: blue;
+        }
+        mark:nth-of-type(3) {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+        let v_div = document.querySelector('div');
+
+        v_div.addEventListener('mousedown',function(e){
+            // button 0,1,2 (한국에서 많이 사용) | which 1,2,3 (외국에서 많이 사용)
+            console.log(event.button, " | ", e.which);
+
+            if(event.button ==0) {
+                // v_div.innerHTML = "<mark>좌클릭!</mark>";
+                v_div.insertAdjacentHTML('beforebegin',"<mark>좌클릭!</mark>");
+            } else if(event.button == 1) {
+                v_div.innerHTML += "<mark>중클릭!</mark>";
+            } else {
+                // v_div.innerHTML = "<mark>우클릭!</mark>";
+                v_div.insertAdjacentHTML('afterend',"<mark>우클릭!</mark>");
+            }
+        });
+
+        // v_div.addEventListener('mouseup',function(){
+        //     alert("눌렸던 버튼을 놓음");
+        // });
+        v_div.onmouseup = function(){
+            alert("클릭해제");
+        }
+
+        // v_div.addEventListener('contextmenu',function(){
+        //     event.preventDefault(); // 컨텍스트 메뉴 띄우기 중지
+        // });
+        v_div.oncontextmenu = function(){
+            event.preventDefault();
+        }
+    </script>
+</body>
+</html>

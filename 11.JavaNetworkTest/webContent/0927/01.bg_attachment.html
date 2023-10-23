@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  width: 200px;
+  height: 300px;
+  border: 4px inset lightsalmon;
+  padding: 10px;
+  margin: 10px;
+  background-image: url(../imeage/hqdefault.jpg);
+/* 
+    auto    : 배경 이미지를 원래 크기로 표시 (default)
+    cover   : 배경 이미지를 표현 영역에 맞게 자르거나 늘려서 표시
+    contain : 배경 이미지가 영역 안에서 온전히 보이도록 크기 조정 (=100%)
+*/
+  /* background-size: 100%; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: auto;
+} 
+#fixed {
+  background-attachment: fixed;
+}
+#local {
+  background-attachment: local;
+}
+h5 {
+  background-color: white;
+  border: 2px solid lightgray;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+fieldset {
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+    <!-- scroll : 해당 영역의 배경 이미지 고정 및 요소만 스크롤 (기본 값) -->
+    <fieldset>
+        <legend>scroll (default)</legend>
+        <div>
+            <h5>div영역에</h5>
+            <h5>이미지는 고정</h5>
+            <h5>요소만 스크롤</h5>
+        </div>
+    </fieldset>
+    
+    <!-- fixed : 전체 영역에서 배경 이미지 고정 -->
+    <fieldset>
+        <legend>fixed</legend>
+        <div id="fixed">
+            <h5>브라우저(창)영역에</h5>
+            <h5>이미지 고정</h5>
+            <h5>요소만 스크롤</h5>
+        </div>
+    </fieldset>
+
+    <!-- local : 배경 이미지와 요소가 함께 스크롤 -->
+    <fieldset>
+        <legend>local</legend>
+        <div id="local">
+        <h5>이미지와 요소가</h5>
+        <h5>같이 스크롤</h5>
+        <h5>이미지와 요소가</h5>
+        <h5>같이 스크롤</h5>
+        </div>
+        <p></p>
+    </fieldset>
+
+</body>
+</html>

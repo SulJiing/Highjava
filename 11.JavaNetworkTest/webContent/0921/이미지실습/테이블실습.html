@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table{
+            border: 3px solid blue; /*border의 color, style(필수), width 속성을 축약으로 작성 */
+            width: 300px;
+            height: 200px;
+            border-width: 3px;
+            /* border-style: solid; 밑에서 기본값으로 잡음*/
+            border-color: blue;
+            caption-side: bottom;
+        }
+        td{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- table>tr*4>td*3 -->
+    <table border="">
+        <caption>테이블 제목</caption>
+        <tr>
+            <th>1열</th>
+            <th>2열</th>
+            <th>3열</th>
+        </tr>
+        <tr>
+            <td rowspan="2">1행1열</td>
+            <td>1행2열</td>
+            <td>1행3열</td>
+        </tr>
+        <tr>
+            <!-- <td>2행1열</td> -->
+            <td>2행2열</td>
+            <td>2행3열</td>
+        </tr>
+        <tr>
+            <td colspan="3">3행1열</td>
+            <!-- <td>3행2열</td>
+                <td>3행3열</td> -->
+            </tr>
+    </table>
+</body>
+</html>

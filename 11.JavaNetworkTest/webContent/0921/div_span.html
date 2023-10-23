@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /*block요소 - 기본적으로 너비 100% 공간을 갖기 때문에 자유롭게 사이즈 조절 가능*/
+        div{
+            border: 1px solid black;
+            width: 50%;
+            height: 400px;
+        }
+        /*inline요소 - 자신이 가진 사이즈만을 표현하므로 사이즈(width,heght) 적용 불가*/
+        span{
+            color: red; /*폰트색상*/
+            width: 50%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        div요소는 순수한 컨테이너로 특별한 기능이 없음<br>
+        대신 <span>다른 요소들을 묶어 그룹화 시킨 후</span> class나 id속성으로 접근해
+        꾸미기 쉽게 돕는 역할을 함
+    </div>
+    <div>
+        <span>span요소</span> 또한 특별한 기능은 없고, 주로 텍스트를 꾸며주는 역할
+    </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th><a href="javascript:f_sort(0)">제목</a></th>
+                <th><a href="javascript:f_sort(1)">글쓴이</a></th>
+                <th><a href="javascript:f_sort(2)">내용</a></th>
+                <th><a href="javascript:f_sort(3)">날짜</a></th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <tr>
+                <td>달러구트 꿈 백화점</td>
+                <td>이미예</td>
+                <td>주문하신 꿈은 매진입니다</td>
+                <td>2020-07-08</td>
+            </tr>
+            <tr>
+                <td>주린이가 알고싶은 최다질문 77</td>
+                <td>염승환</td>
+                <td>염블리와 함께라면 주식이 쉽고 재밌다</td>
+                <td>2021-07-26</td>
+            </tr>
+            <tr>
+                <td>미드나잇 라이브러리</td>
+                <td>매트 헤이그</td>
+                <td>1주년 스페셜 에디션</td>
+                <td>2020-04-28</td>
+            </tr>
+            <tr>
+                <td>공정하다는 착각</td>
+                <td>마이클 센델</td>
+                <td>능력주의는 모두에게 같은 기회를 제공하는가?</td>
+                <td>2020-12-01</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+
+        // ES2 - getElementsByTagName()
+        let v_trs1 = document.getElementsByTagName('tr');
+        // ES6 - querySelectorAll()
+        let v_trs2 = document.querySelectorAll('tr');
+
+        // Array객체가 제공하는 sort()는 유사배열을 사용할 수 없음
+        // 유사배열(HTMLCollection, NodeList)을 배열로 변환해야 사용이 가능
+        console.log(v_trs1,v_trs2);
+
+        // 배열로 변화 1) for문을 이용해서 빈 배열공간에 순차적으로 넣어주기
+        let v_arr = []; // 빈 배열
+        for(let i=1; i<v_trs1.length; i++) {
+            v_arr.push(v_trs1[i]);
+        }
+
+        // 배열로 변화 2) Array.from() => 유사배열의 객체를 배열로 변환
+        let v_arr1 = Array.from(v_trs2);
+        // splice(idx,n,a,b,c,...)
+        v_arr1.splice(0,1);
+
+        // 배열로 변화 3) ES6 스프레드 연산자 - 기존 배열이나 객체 등을 빠르게 복사
+        let v_arr2 = [...v_trs1];
+        v_arr2.splice(0,1);
+        // console.log(v_arr2);
+
+        // 각 주제별 정렬함수
+        let f_sort = function(p_idx){
+            // alert(p_idx); //0제목, 1글쓴이, 2내용, 3날짜
+
+            v_arr2.sort(function(a,b) {
+                // console.log(a," | ",b);
+                console.log(a.children[p_idx].innerText);
+                if(a.children[p_idx].innerText >= b.children[p_idx].innerText) { // 오름차순
+                    return 1;
+                } else {
+                    return -1; // 자리변경
+                }
+            });
+            console.log("주제별 정렬결과 => ", v_arr2);
+            // 정렬된 결과물을 화면(table)에 반영
+
+            let v_tbody = document.querySelector('#tbody'); // 정렬된 데이터를 넣을 공간 지정
+
+            // appendChild()로 데이터 넣기 => 기본기능 - 데이터 추가/ 특이기능 = ㄷ이터 이동
+
+            for(let i =0; i<v_arr2.length; i++) {
+                v_tbody.appendChild(v_arr2[i]); // 추가하는 코드가 추가될 위치에 이미 존재할 경우 '데이터 이동'됨
+            }
+        };
+    </script>
+</body>
+</html>

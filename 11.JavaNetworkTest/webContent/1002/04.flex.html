@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #container {
+            border: 1px solid red;
+            width: 240px;
+            height: 500px;
+            display: flex;
+        }
+        .item {
+            border: 1px solid gold;
+            height: 20px;
+            /* width: 100px; */
+            flex-basis: 100px;
+            flex-shrink: 0; /* 기본값이 1 0은 줄이지 않고 내가 설정한 값을 사용할 때*/
+        }
+    </style>
+</head>
+<body>
+    <!-- flex - 요소를 효율적으로 배치, 정렬, 분산할 수 있는 방법을 제공하는 css3의 새로운 레이아웃 방식
+                복잡한 계산없이(float, position) 요소를 유연하게 배치할 수 있음
+
+        display : flex; 적용시 자식요소를 모두 inline-block으로 설정
+
+        flex container에 적용하는 속성
+            flex-direction(row)           => 요소의 배치 방향 결정
+            flex-wrap(nowrap)             => 요소를 영역 안으로 랩핑할 지 결정
+            flex-flow                     => direction과 wrap 동시 설정
+            align-content(stretch)        => flex line(여러 행) 정렬 (=flex-wrap : wrap일때만 유효)
+            jjstify-content(flex-start)   => 요소 가로 정렬
+            align-item(stretch)           => 요소 세로 정렬
+
+        flex item에 적용하는 속성
+            flex (-basis, -grow, -shrink의 축약)
+            flex-basis  => 아이템의 기본크기 지정(flex-direction이 row일 때 너비값으로 /column일 때 높이값으로)
+            flex-grow   => 유연하게 늘리기
+            flex-shrink => 유연하게 줄이기
+            ... 등등
+            -->
+
+        <!-- div#container>div.item*3 -->
+        <div id="container">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+        </div>
+</body>
+</html>
