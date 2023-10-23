@@ -73,9 +73,27 @@ public class MultiChatServer {
 	 * 	대화방 즉, Map에 저장된 전체 유저에게 안내 메세지를 전송하는 메서드
 	 * @param msg 전송할 안내 메세지
 	 * @param from 메세지 보낸 사람
+	 * @throws IOException 
 	 */
-	private void sendMessage(String msg, String from) {
-		sendMessage("["+from+"]"+msg);
+	private void sendMessage(String msg, String from) throws IOException {
+		Iterator<String> it = clients.keySet().iterator();
+
+		while (it.hasNext()) {
+			String name = it.next();
+			DataOutputStream dos = new DataOutputStream(clients.get(name).getOutputStream());
+
+			if (msg.startsWith("/w_")) {
+				int targetNameEndIndex = msg.indexOf("_", 3); // 대상 이름의 끝 인덱스
+				if (targetNameEndIndex > 3) {
+					String targetName = msg.substring(3, targetNameEndIndex);
+					if (name.equals(targetName)) {
+						dos.writeUTF("귓속말 from " + from + ": " + msg.substring(targetNameEndIndex + 1));
+					}
+				}
+			} else {
+				dos.writeUTF("[" + from + "]" + msg);
+			}
+		}
 	}
 	/**
 	 * 	서버에서 클라이언트로부터 수신한 메세지를 처리하기 위한 쓰레드 클래스
