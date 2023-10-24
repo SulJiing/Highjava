@@ -34,11 +34,11 @@ public class T02ServletTest extends HttpServlet {
 		System.out.println("getRemoteAddr() : "+req.getRemoteAddr());
 		System.out.println("getRemotePort() : "+req.getRemotePort());
 		
-		// Post방식으로 넘어오는 Body데이터를 인코딩 처리함. GET방식인 경우 톰캣이 자동으로 인코딩 처리함.
+		// POST방식으로 넘어오는 Body데이터를 인코딩 처리함. GET방식인 경우 톰캣이 자동으로 인코딩 처리함.
 		// 요청객체로부터 값을 가져오기 전에 먼저 설정해야 적용됨.
 		req.setCharacterEncoding("UTF-8");
 		
-		String name = req.getParameter("name");
+		String name = req.getParameter("name"); // 클라이언트가 서버쪽으로 던져주는 정보를 꺼내오는 것
 		
 		System.out.println("name => "+name);
 		
@@ -47,14 +47,15 @@ public class T02ServletTest extends HttpServlet {
 		req.setAttribute("addr", "대전시 중구 오류동");
 		
 		// 요청 객체에 저장된 정보 꺼내기
-		System.out.println("tel => " + req.getAttribute("tel"));
+		System.out.println("tel => " + req.getAttribute("tel")); // setAttribute로 Request객체 안에 저장해둔 값을 꺼내오는 것
 		System.out.println("addr => " + req.getAttribute("addr"));
 		
 		// 응답 메세지 생성하기(응답 객체 이용)...
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/plain");
+//		resp.setHeader("Content-Type", "text/plain");
 		
-		// 실제 응답 메세지를 생성하는 부분...
+		// 실제 응답 메세지를 생성하는 부분...(문자기발 출력을 위함)
 		PrintWriter out = resp.getWriter();
 		
 		out.println("name => "+name);

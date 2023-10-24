@@ -21,4 +21,22 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   		<servlet-name>T02ServletTest</servlet-name>
   		<url-pattern>/T02ServletTest</url-pattern>
   	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>T03ServletParameterTest</servlet-name>
+  		<servlet-class>kr.or.ddit.basic.T03ServletParameterTest</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>T03ServletParameterTest</servlet-name>
+  		<url-pattern>/T03ServletParameterTest</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>T04ServletCookieTest</servlet-name>
+  		<servlet-class>kr.or.ddit.basic.T04ServletCookieTest</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>T04ServletCookieTest</servlet-name>
+  		<url-pattern>/T04ServletCookieTest</url-pattern>
+  	</servlet-mapping>
 </web-app>
