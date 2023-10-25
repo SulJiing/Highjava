@@ -84,6 +84,7 @@ public class MultiChatServer {
 
 			if (msg.startsWith("/w_")) {
 				int nameEndId = msg.indexOf("_", 3); // 대상 이름의 끝 인덱스
+				System.err.println(nameEndId);
 				if (nameEndId > 3) {
 					String targetName = msg.substring(3, nameEndId);
 					if (name.equals(targetName)) {
@@ -153,7 +154,6 @@ public class MultiChatServer {
 				System.out.println("현재 서버 접속자 수는"+clients.size()+"명 입니다.");
 			}
 		}
-
 	}
 	
 	public static void main(String[] args) {
