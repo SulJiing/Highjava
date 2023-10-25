@@ -12,6 +12,26 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
+
+<script type="text/javascript">
+function send(id) {
+    // 클릭한 <tr> 요소의 ID 값을 가져옵니다.
+    console.log(id+" Hi");
+
+    // 다른 페이지로 이동하거나 데이터를 전달할 수 있습니다.
+    // 여기에서는 경로를 이동하는 예제를 보여줍니다.
+     window.location.href = "<%=request.getContextPath()%>/member/detail.do?memId=" + id;
+// window.onload = function(){
+// 	const memDataRows = document.getElementsByClassName("memData");
+// 	for(let i=0; i<memDataRows.length; i++){
+// 		memDataRows[i].addEventListener("click", function(){
+// 			const memId = this.getAttribute("id");
+// 			console.log(memId)
+<%-- 			location.href = "<%=request.getContextPath() %>/member/detail.do?memId=" + memId  --%>
+// 		});
+// 	}
+}
+</script>
 </head>
 <body>
 	<table border="1">
@@ -26,8 +46,9 @@
 	if(memSize > 0) {
 		for(MemberVO mv : memList) {
 %>
-		<tr>
-			<td><% out.print(mv.getMemId()); %></td>
+<%-- 		<tr <!-- class="memData" id="// <%=mv.getMemId()%>" -->> --%>
+			<tr>
+			<td onclick="send('<%=mv.getMemId()%>')"><a href="<%=request.getContextPath() %>/member/detail.do"><% out.print(mv.getMemId()); %></a></td>
 			<td><%=mv.getMemName() %></td>
 			<td><%=mv.getMemTel() %></td>
 			<td><%=mv.getMemAddr() %></td>
@@ -46,6 +67,10 @@
 		<td colspan="4"><a href="<%=request.getContextPath() %>/member/insert.do">[회원 등록]</a></td>
 	</tr>
 
+	<tr align="center">
+		<td colspan="4"><a href="<%=request.getContextPath() %>/member/update.do">[회원 정보 변경]</a></td>
+	</tr>
+	
 	</table>
 
 </body>
