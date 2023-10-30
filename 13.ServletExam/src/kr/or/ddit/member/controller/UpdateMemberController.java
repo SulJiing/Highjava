@@ -19,6 +19,19 @@ public class UpdateMemberController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
+		String memId = req.getParameter("memId");
+		
+		MemberVO mv = new MemberVO(memId,"","","");
+
+		req.setAttribute("memVo", mv);
+		
+		System.out.println(memId);
+		
+//		IMemberService memService = MemberServiceImpl.getInstance();
+		
+//		memService.modifyMember(mv);
+		
+//		resp.sendRedirect(req.getContextPath() + "/member/list.do");
 		req.getRequestDispatcher("/views/member/updateForm.jsp").forward(req, resp);
 	}
 	

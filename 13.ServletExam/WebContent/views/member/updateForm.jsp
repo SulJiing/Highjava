@@ -5,7 +5,7 @@
 	String errMsg = (String)request.getAttribute("errMsg");
 	MemberVO mv = (MemberVO)request.getAttribute("memVo");
 	if(mv==null){
-		mv = new MemberVO("","","","");
+		mv = new MemberVO(mv.getMemId(),mv.getMemName(),mv.getMemTel(),mv.getMemAddr());
 	}
 %>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ if(errMsg != null){
 		<table>
 			<tr>
 				<td>I D:</td>
-				<td><input type="text" name="memId" value="<%=mv.getMemId()%>"></td>
+				<td><input type="text" name="memId" value="<%=mv.getMemId()%>"readonly></td>
 				<td></td>
 			</tr>
 			<tr>

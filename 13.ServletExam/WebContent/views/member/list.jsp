@@ -48,7 +48,7 @@ function send(id) {
 %>
 <%-- 		<tr <!-- class="memData" id="// <%=mv.getMemId()%>" -->> --%>
 			<tr>
-			<td onclick="send('<%=mv.getMemId()%>')"><a href="<%=request.getContextPath() %>/member/detail.do"><% out.print(mv.getMemId()); %></a></td>
+			<td onclick="send('<%=mv.getMemId()%>')"><a href="<%=request.getContextPath()+ "/member/detail.do?memId=" + mv.getMemId()%>"><%=mv.getMemId()%></a></td>
 			<td><%=mv.getMemName() %></td>
 			<td><%=mv.getMemTel() %></td>
 			<td><%=mv.getMemAddr() %></td>
